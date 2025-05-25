@@ -12,7 +12,13 @@ import {
   Space,
   Tooltip,
   Flex,
+
 } from "antd";
+
+  
+
+import Icon, { GooglePlusOutlined } from '@ant-design/icons';
+
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import bgImage from "./university-background-image.jpg"; // Your custom image
 import { useState } from "react";
@@ -34,7 +40,9 @@ export default function Login() {
     setRole(e.target.value);
   };
   return (
-    <Row style={{ minHeight: "100vh" }}>
+
+    <Row style={{ minHeight: "100vh" }} justify="center">
+
       <Col xs={24} sm={18} md={12} lg={16} style={{ background: "purple" }}>
         <Image
           width="100%"
@@ -58,14 +66,19 @@ export default function Login() {
           padding: "2rem",
         }}
       >
+
+     <Col span="15" >
+     
         <Image
-          width="30%"
-          height="30%"
+          width="40%"
+          // height="30%"
           src={bgImage}
           preview={false}
-          style={{ marginTop: "140px" }}
+       
         />
-        <Title style={{ fontFamily: "cursive" }}>Sgin in Uos</Title>
+        <Title style={{ fontFamily: "cursive",textAlign:"center" }}>Sgin in Uos</Title>
+   </Col>
+
         {/* <Col> */}
 
         {/* <Button type="primary" shape="round" >
@@ -76,6 +89,13 @@ export default function Login() {
           Student 
           </Button> */}
         {/* </Col> */}
+
+        <Col xs={{ flex: '100%' }}
+          sm={{ flex: '50%' }}
+          md={{ flex: '40%' }}
+          lg={{ flex: '20%' }}
+          xl={{ flex: '10%' }}>
+
         <Radio.Group
           onChange={handleChange}
           value={role}
@@ -90,7 +110,9 @@ export default function Login() {
             value="student"
             style={{
               borderRadius: "999px 0 0 999px",
+
               width: 120,
+
               textAlign: "center",
             }}
           >
@@ -100,18 +122,31 @@ export default function Login() {
             value="lecturer"
             style={{
               borderRadius: "0 999px 999px 0",
-              width: 120,
+
+     
+
+             maxWidth:"100%",
+
               textAlign: "center",
             }}
           >
             Lecturer
           </Radio.Button>
         </Radio.Group>
-        <Flex vertical gap="small" style={{ width: "60%", marginTop: "25px" }}>
+
+        </Col>
+        <Flex vertical gap="small" style={{  marginTop: "25px" }}>
           <Button
             type="text"
             style={{ border: "1px solid", height: "70px" }}
-          ></Button>
+           
+  
+          >
+             <GooglePlusOutlined  style={{ fontSize: '35px', color: '#08c' }} theme="outlined"/>
+            Contiune with the google
+                     
+          </Button>
+
         </Flex>
 
         {/* <Form
