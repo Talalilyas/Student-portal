@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 
-import { BrowserRouter, Route } from 'react-router-dom';
+
 import Pagerouting from './Pagerouting';
 
 
