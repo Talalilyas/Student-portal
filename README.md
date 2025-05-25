@@ -1,2 +1,0 @@
-# Student-portal
-portal-app
