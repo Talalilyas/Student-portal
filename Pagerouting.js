@@ -5,7 +5,7 @@ import { Image } from 'antd';
 // import StepTwo from './StepTwo';
 // import StepThree from './StepThree';
 
-function App() {
+function Pagerouting() {
 
 
 
@@ -26,4 +26,4 @@ function App() {
   );
 }
 
-export default App;
+export default Pagerouting;
