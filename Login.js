@@ -12,10 +12,13 @@ import {
   Space,
   Tooltip,
   Flex,
-  
 
 } from "antd";
+
+  
+
 import Icon, { GooglePlusOutlined } from '@ant-design/icons';
+
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import bgImage from "./university-background-image.jpg"; // Your custom image
 import { useState } from "react";
@@ -37,7 +40,9 @@ export default function Login() {
     setRole(e.target.value);
   };
   return (
+
     <Row style={{ minHeight: "100vh" }} justify="center">
+
       <Col xs={24} sm={18} md={12} lg={16} style={{ background: "purple" }}>
         <Image
           width="100%"
@@ -61,6 +66,7 @@ export default function Login() {
           padding: "2rem",
         }}
       >
+
      <Col span="15" >
      
         <Image
@@ -72,6 +78,7 @@ export default function Login() {
         />
         <Title style={{ fontFamily: "cursive",textAlign:"center" }}>Sgin in Uos</Title>
    </Col>
+
         {/* <Col> */}
 
         {/* <Button type="primary" shape="round" >
@@ -82,11 +89,13 @@ export default function Login() {
           Student 
           </Button> */}
         {/* </Col> */}
+
         <Col xs={{ flex: '100%' }}
           sm={{ flex: '50%' }}
           md={{ flex: '40%' }}
           lg={{ flex: '20%' }}
           xl={{ flex: '10%' }}>
+
         <Radio.Group
           onChange={handleChange}
           value={role}
@@ -101,7 +110,9 @@ export default function Login() {
             value="student"
             style={{
               borderRadius: "999px 0 0 999px",
-          
+
+              width: 120,
+
               textAlign: "center",
             }}
           >
@@ -111,13 +122,18 @@ export default function Login() {
             value="lecturer"
             style={{
               borderRadius: "0 999px 999px 0",
+
+     
+
              maxWidth:"100%",
+
               textAlign: "center",
             }}
           >
             Lecturer
           </Radio.Button>
         </Radio.Group>
+
         </Col>
         <Flex vertical gap="small" style={{  marginTop: "25px" }}>
           <Button
@@ -130,6 +146,7 @@ export default function Login() {
             Contiune with the google
                      
           </Button>
+
         </Flex>
 
         {/* <Form
