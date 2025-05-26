@@ -21,6 +21,7 @@ import Icon, { GooglePlusOutlined } from "@ant-design/icons";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import bgImage from "./university-background-image.jpg"; // Your custom image
 import { useState } from "react";
+import Lecturer from "./Lecturer";
 export default function Login() {
   // const onFinish = (values) => {
   //   console.log("Success:", values);
@@ -88,44 +89,7 @@ export default function Login() {
           </Button> */}
         {/* </Col> */}
 
-        <Col
-            xs="24" >
-          <Radio.Group
-            onChange={handleChange}
-            value={role}
-            buttonStyle="solid"
-            style={{
-              border: "1px solid  black",
-              borderRadius: "999px",
-              overflow: "hidden",
-            }}
-          >
-            <Radio.Button
-              value="student"
-              style={{
-                borderRadius: "999px 0 0 999px",
-
-                width: 120,
-
-                textAlign: "center",
-              }}
-            >
-              Student
-            </Radio.Button>
-            <Radio.Button
-              value="lecturer"
-              style={{
-                borderRadius: "0 999px 999px 0",
-
-                maxWidth: "100%",
-
-                textAlign: "center",
-              }}
-            >
-              Lecturer
-            </Radio.Button>
-          </Radio.Group>
-        </Col>
+      <Lecturer/>
         <Row>
         <Col 
            
