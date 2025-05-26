@@ -6,18 +6,17 @@ import {
   Row,
   Col,
   Image,
-  message,
+  
+  
   Typography,
   Radio,
   Space,
   Tooltip,
-  Flex,
 
+ 
 } from "antd";
 
-  
-
-import Icon, { GooglePlusOutlined } from '@ant-design/icons';
+import Icon, { GooglePlusOutlined } from "@ant-design/icons";
 
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import bgImage from "./university-background-image.jpg"; // Your custom image
@@ -40,45 +39,44 @@ export default function Login() {
     setRole(e.target.value);
   };
   return (
-
     <Row style={{ minHeight: "100vh" }} justify="center">
-
       <Col xs={24} sm={18} md={12} lg={16} style={{ background: "purple" }}>
         <Image
           width="100%"
-          height="95%"
+          height="98%"
           src={bgImage}
           preview={false}
-          style={{ marginTop: "10px" }}
+          style={{ marginTop: "5px" }}
         />
       </Col>
 
       <Col
-        xs={24}
-        sm={18}
-        md={12}
-        lg={8}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-
-          alignItems: "center",
-          padding: "2rem",
-        }}
-      >
-
-     <Col span="15" >
+  xs={24}
+  sm={18}
+  md={12}
+  lg={8}
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "3rem",
+    paddingTop:"170px"
+  }}
+>
+  
+  <Row justify="center" style={{ width: "100%" }}>
+    <Col>
+      <Image
+        src={bgImage}
+        preview={false}
+        style={{ width: "150px", height: "auto" }} 
+      />
+    </Col>
      
-        <Image
-          width="40%"
-          // height="30%"
-          src={bgImage}
-          preview={false}
-       
-        />
-        <Title style={{ fontFamily: "cursive",textAlign:"center" }}>Sgin in Uos</Title>
-   </Col>
-
+  </Row>
+   <Title style={{ fontFamily: "cursive", textAlign: "center" }}>
+            Sgin in Uos
+          </Title>
         {/* <Col> */}
 
         {/* <Button type="primary" shape="round" >
@@ -90,64 +88,58 @@ export default function Login() {
           </Button> */}
         {/* </Col> */}
 
-        <Col xs={{ flex: '100%' }}
-          sm={{ flex: '50%' }}
-          md={{ flex: '40%' }}
-          lg={{ flex: '20%' }}
-          xl={{ flex: '10%' }}>
-
-        <Radio.Group
-          onChange={handleChange}
-          value={role}
-          buttonStyle="solid"
-          style={{
-            border: "1px solid  black",
-            borderRadius: "999px",
-            overflow: "hidden",
-          }}
-        >
-          <Radio.Button
-            value="student"
+        <Col
+            xs="24" >
+          <Radio.Group
+            onChange={handleChange}
+            value={role}
+            buttonStyle="solid"
             style={{
-              borderRadius: "999px 0 0 999px",
-
-              width: 120,
-
-              textAlign: "center",
+              border: "1px solid  black",
+              borderRadius: "999px",
+              overflow: "hidden",
             }}
           >
-            Student
-          </Radio.Button>
-          <Radio.Button
-            value="lecturer"
-            style={{
-              borderRadius: "0 999px 999px 0",
+            <Radio.Button
+              value="student"
+              style={{
+                borderRadius: "999px 0 0 999px",
 
-     
+                width: 120,
 
-             maxWidth:"100%",
+                textAlign: "center",
+              }}
+            >
+              Student
+            </Radio.Button>
+            <Radio.Button
+              value="lecturer"
+              style={{
+                borderRadius: "0 999px 999px 0",
 
-              textAlign: "center",
-            }}
-          >
-            Lecturer
-          </Radio.Button>
-        </Radio.Group>
+                maxWidth: "100%",
 
+                textAlign: "center",
+              }}
+            >
+              Lecturer
+            </Radio.Button>
+          </Radio.Group>
         </Col>
-        <Flex vertical gap="small" style={{  marginTop: "25px" }}>
-          <Button
-            type="text"
-            style={{ border: "1px solid", height: "70px" }}
+        <Row>
+        <Col 
            
-  
-          >
-             <GooglePlusOutlined  style={{ fontSize: '35px', color: '#08c' }} theme="outlined"/>
+          style={{paddingTop:"5px"}}
+         >
+          <Button type="text" style={{ border: "1px solid", height: "60px" }}>
+            <GooglePlusOutlined
+              style={{ fontSize: "30px", color: "#08c" }}
+              theme="outlined"
+            />
             Contiune with the google
-                     
           </Button>
-
-        </Flex>
+        </Col>
+        </Row>
 
         {/* <Form
           name="loginForm"
