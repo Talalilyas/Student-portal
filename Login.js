@@ -6,14 +6,10 @@ import {
   Row,
   Col,
   Image,
-  
-  
   Typography,
   Radio,
   Space,
   Tooltip,
-
- 
 } from "antd";
 
 import Icon, { GooglePlusOutlined } from "@ant-design/icons";
@@ -52,51 +48,43 @@ export default function Login() {
       </Col>
 
       <Col
-  xs={24}
-  sm={18}
-  md={12}
-  lg={8}
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "3rem",
-    paddingTop:"170px"
-  }}
->
-  
-  <Row justify="center" style={{ width: "100%" }}>
-    <Col>
-      <Image
-        src={bgImage}
-        preview={false}
-        style={{ width: "150px", height: "auto" }} 
-      />
-    </Col>
-     
-  </Row>
-   <Title style={{ fontFamily: "cursive", textAlign: "center" }}>
-            Sgin in Uos
-          </Title>
-       
-
-      <Lecturer/>
-        <Row>
-        <Col 
-           
-          style={{paddingTop:"5px"}}
-         >
-          <Button type="text" style={{ border: "1px solid", height: "60px" }}>
-            <GooglePlusOutlined
-              style={{ fontSize: "30px", color: "#08c" }}
-              theme="outlined"
+        xs={24}
+        sm={18}
+        md={12}
+        lg={8}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "3rem",
+          paddingTop: "170px",
+        }}
+      >
+        <Row justify="center" style={{ width: "100%" }}>
+          <Col>
+            <Image
+              src={bgImage}
+              preview={false}
+              style={{ width: "150px", height: "auto" }}
             />
-            Contiune with the google
-          </Button>
-        </Col>
+          </Col>
         </Row>
+        <Title style={{ fontFamily: "cursive", textAlign: "center" }}>
+          Sgin in Uos
+        </Title>
 
-       
+        <Lecturer />
+        <Row>
+          <Col style={{ paddingTop: "5px" }}>
+            <Button type="text" style={{ border: "1px solid", height: "60px" }}>
+              <GooglePlusOutlined
+                style={{ fontSize: "30px", color: "#08c" }}
+                theme="outlined"
+              />
+              Contiune with the google
+            </Button>
+          </Col>
+        </Row>
       </Col>
     </Row>
   );

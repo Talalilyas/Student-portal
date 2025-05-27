@@ -35,7 +35,11 @@ export default function Studentlogin() {
 
       const data = await response.json();
       message.success("Login successful!");
-      setAccessToken(data.token);
+
+
+
+      setAccessToken(data);
+
       setUser({ username });
       setIsLogin(true);
       console.log(users)
