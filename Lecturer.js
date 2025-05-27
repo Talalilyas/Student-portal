@@ -47,6 +47,7 @@ export default function Lecturer() {
           Student
         </Radio.Button>
         </Link>
+        <Link to="./Lecturerlogin"> 
         <Radio.Button
           value="lecturer"
           style={{
@@ -59,6 +60,7 @@ export default function Lecturer() {
         >
           Lecturer
         </Radio.Button>
+        </Link>
       </Radio.Group>
     </Col>
     </Row>
