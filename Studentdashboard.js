@@ -2,101 +2,111 @@ import React, { useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-UnorderedListOutlined,
-  VideoCameraOutlined,
+  UnorderedListOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, theme, Row, Col  ,Typography ,Divider} from "antd";
-import Coursedatatable from "./Coursedatatable";
+import {
+  Button,
+  Layout,
+  Menu,
+  Typography,
+  Divider,
+  Row,
+  Col,
+  theme
+} from "antd";
+import { useNavigate, Outlet } from "react-router-dom";
+import useLocalStorageState from "use-local-storage-state";
 
 const { Header, Sider, Content } = Layout;
+const { Text } = Typography;
 
-export default function Studentdasboard() {
+export default function Studentdashboard() {
   const [collapsed, setCollapsed] = useState(false);
+  const [isLogin, setIsLogin] = useLocalStorageState("isLogin", false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
- 
-     const {Text} = Typography ;
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    setIsLogin(false);
+    navigate("/");
+  };
+
   return (
-    <Row>
-      <Layout>
-        <Row style={{ minHeight: "100vh" }}>
-          <Sider
-            trigger={null}
-            collapsible
-            collapsed={collapsed}
-            breakpoint="md"
-            onBreakpoint={(broken) => {
-              setCollapsed(broken);
-            }}
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        breakpoint="md"
+        onBreakpoint={(broken) => setCollapsed(broken)}
+      >
+        <Menu mode="inline" theme="dark" defaultSelectedKeys={["courses"]}>
+          <Menu.Item
+            key="courses"
+            icon={<UnorderedListOutlined />}
+            onClick={() => navigate("table")}
           >
-           
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              items={[
-                {
-                  key: "1",
-                  icon: <UnorderedListOutlined />,
-                  label: "My Courses",
-                  
-                 
-                },
-                {
-                  key: "2",
-                  icon: <VideoCameraOutlined />,
-                  label: "nav 2",
-                },
-                {
-                  key: "3",
-                  icon: <UploadOutlined />,
-                  label: "nav 3",
-                },
-              ]}
-            />
-          </Sider>
+            My Courses
+          </Menu.Item>
+          <Menu.Item key="grade" onClick={() => navigate("grade")}>
+            Grade
+          </Menu.Item>
+          <Menu.Item key="settings" onClick={() => navigate("settings")}>
+            Settings
+          </Menu.Item>
+          <Menu.Item key="quotes" onClick={() => navigate("quotes")}>
+            Quotes
+          </Menu.Item>
+          <Menu.Item key="result-form" onClick={() => navigate("result-form")}>
+            Student Result Form
+          </Menu.Item>
+          <Menu.Item key="signout">
+            <Button type="link" onClick={handleSignOut} style={{ color: "#fff" }}>
+              Sign Out
+            </Button>
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      <Layout>
+        <Row>
+        <Col lg={19} sm={20} md={19} style={{ paddingLeft: "14px" }}>
+        <Header style={{ padding: 0, background: colorBgContainer }}>
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: "16px",
+              width: 64,
+              height: 64,
+            }}
+          />
+        </Header>
+        </Col>
         </Row>
-        <Layout>
-          <Row>
-            <Col lg={19} sm={19} md={19} style={{ paddingLeft: "15px" }}>
-              <Header style={{ padding: 0, background: colorBgContainer }}>
-                <Button
-                  type="text"
-                  icon={
-                    collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
-                  }
-                  onClick={() => setCollapsed(!collapsed)}
-                  style={{
-                    fontSize: "16px",
-                    width: 64,
-                    height: 64,
-                  }}
-                />
-              </Header>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={19} sm={20} md={19} style={{ paddingLeft: "14px" }}>
-              <Content
-                style={{
-                  marginTop: "10px",
-                  paddingLeft:"10px",
-                  paddingTop:"10px",
-                  minHeight: 280,
-                  background: colorBgContainer,
-                  borderRadius: borderRadiusLG,
-                }}
-              ><UnorderedListOutlined style={{fontSize:"18px"}} />
-               <Text type="secondary " style={{marginLeft:"10px"}}>      My Courses  </Text>
-                <Divider size="medium" />
-               <Coursedatatable/>
-              </Content>
-            </Col>
-          </Row>
-        </Layout>
+ <Col lg={19} sm={20} md={19} style={{ paddingLeft: "5px" }}>
+        <Content
+          style={{
+          marginTop:"7px",
+          marginLeft:"10px",
+            padding: "10px",
+            minHeight: 280,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+
+          <UnorderedListOutlined style={{ fontSize: "18px" }} />
+          <Text type="secondary" style={{ marginLeft: "10px" }}>
+            Student Portal
+          </Text>
+          <Divider />
+          <Outlet />
+        </Content>
+        </Col>
       </Layout>
-    </Row>
+    </Layout>
   );
 }
