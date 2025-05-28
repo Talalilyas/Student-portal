@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Login';
 import Studentlogin from './Studentlogin';
-import Lecturerlogin from './Lecturerlogin';
+import Lecturerlogin from './Lecturerlogin';  
 import Studentdashboard from './Studentdashboard';
 import useLocalStorageState from 'use-local-storage-state';
 
