@@ -26,16 +26,15 @@ export default function Coursedatatable() {
   return (
     <Row style={{ padding: 1 }}>
       <Col xs={24} sm={22} md={20} lg={18} xl={24}>
-       <Table
-  dataSource={data}
-  columns={columns}
-  pagination={{ pageSize: 3 }}
-  scroll={{ x: "max-content" }}
-  size="small"
-  bordered={false}
-  rowClassName={() => 'no-color-row'}
-/>
-
+        <Table
+          dataSource={data}
+          columns={columns}
+          pagination={{ pageSize: 3 }}
+          scroll={{ x: "max-content" }}
+          size="small"
+          bordered={false}
+          rowClassName={() => "no-color-row"}
+        />
       </Col>
     </Row>
   );
