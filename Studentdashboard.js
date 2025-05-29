@@ -12,7 +12,8 @@ import {
   Divider,
   Row,
   Col,
-  theme
+  theme,
+  Space
 } from "antd";
 import { useNavigate, Outlet } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
@@ -30,25 +31,22 @@ export default function Studentdashboard() {
 
   const handleSignOut = () => {
     setIsLogin(false);
-     console.log(isLogin)
+    console.log(isLogin);
     navigate("/");
   };
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
+        width={240}
         trigger={null}
         collapsible
         collapsed={collapsed}
         breakpoint="md"
         onBreakpoint={(broken) => setCollapsed(broken)}
       >
-        <Menu mode="inline" theme="dark" defaultSelectedKeys={["courses"]}>
-          <Menu.Item
-            key="courses"
-            icon={<UnorderedListOutlined />}
-            onClick={() => navigate("table")}
-          >
+        <Menu mode="inline" theme="dark" >
+          <Menu.Item key="courses" icon={<UnorderedListOutlined />} onClick={() => navigate("table")}>
             My Courses
           </Menu.Item>
           <Menu.Item key="grade" onClick={() => navigate("grade")}>
@@ -70,9 +68,10 @@ export default function Studentdashboard() {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout>
-        <Row>
-        <Col lg={19} sm={20} md={19} style={{ paddingLeft: "14px" }}>
+
+      <Layout> 
+             <Row>
+      <Col lg={18} sm={18} md={18} xl={18} style={{ paddingLeft: "16px" }}>
         <Header style={{ padding: 0, background: colorBgContainer }}>
           <Button
             type="text"
@@ -85,28 +84,42 @@ export default function Studentdashboard() {
             }}
           />
         </Header>
-        </Col>
+       </Col>
+     </Row>  
+        <Row style={{ paddingLeft: "16px",paddingTop:"10px" }}>
+          <Col lg={18} md={18} sm={18} xl={18}>
+            <Content
+              style={{
+                padding: "10px",
+                minHeight: 280,
+                background: colorBgContainer,
+                borderRadius: borderRadiusLG,
+              }}
+            >
+              <UnorderedListOutlined style={{ fontSize: "16px" }} />
+              <Text type="secondary" style={{ marginLeft: "2px" }}>
+                    <Space></Space> <Space></Space>  MY Courses
+              </Text>
+              <Divider size="small" />
+              <Outlet />
+            </Content>
+          </Col>
         </Row>
- <Col lg={19} sm={20} md={19} style={{ paddingLeft: "5px" }}>
-        <Content
-          style={{
-          marginTop:"7px",
-          marginLeft:"10px",
-            padding: "10px",
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-
-          <UnorderedListOutlined style={{ fontSize: "18px" }} />
-          <Text type="secondary" style={{ marginLeft: "10px" }}>
-            Student Portal
-          </Text>
-          <Divider />
-          <Outlet />
-        </Content>
-        </Col>
+        <Row style={{ paddingLeft:"16px",paddingTop:"10px" }}>
+          <Col lg={18} sm={18} xl={18} md={18}>
+            <Content
+              style={{
+                padding: "10px",
+                minHeight: 200,
+                background: colorBgContainer,
+                borderRadius: borderRadiusLG,
+              }}>
+             <UnorderedListOutlined/> 
+              <Text type="secondary "> <Space></Space>Upcoming exams</Text>
+              <Divider size="small" /> 
+            </Content>
+          </Col>
+        </Row>
       </Layout>
     </Layout>
   );
