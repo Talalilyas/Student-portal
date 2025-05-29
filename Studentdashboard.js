@@ -30,6 +30,7 @@ export default function Studentdashboard() {
 
   const handleSignOut = () => {
     setIsLogin(false);
+     console.log(isLogin)
     navigate("/");
   };
 
