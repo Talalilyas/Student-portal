@@ -4,8 +4,8 @@ import { Table, Row, Col, Typography } from "antd";
 
 const { Title } = Typography;
 
-export default function Coursedatatable() {
-  const { data, loading } = useFetchQuotes("http://localhost:8080/score");
+export default function Studentexam() {
+  const { data, loading } = useFetchQuotes("http://localhost:8080/course");
 
   if (loading) {
     return <p>Loading...</p>;
@@ -16,11 +16,10 @@ export default function Coursedatatable() {
   }
 
   const columns = [
-    { title: "Course ID", dataIndex: "course_id", key: "course_id" },
-    { title: "Course Title", dataIndex: "course_title", key: "course_title" },
-    { title: "Awarded", dataIndex: "awarded", key: "awarded" },
-    { title: "Credits", dataIndex: "Credits", key: "Credits" },
-    { title: "Score", dataIndex: "score", key: "score" },
+    { title: "Course title", dataIndex: "course_subject", key: "course_id" },
+    { title: "Exam type", dataIndex: "exam_type", key: "course_title" },
+    { title: "Date/Time", dataIndex: "exam_date_time", key: "awarded" },
+   
   ];
 
   return (
