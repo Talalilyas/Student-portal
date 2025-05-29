@@ -1,37 +1,15 @@
 import React from "react";
-import {
-  Button,
-  Input,
-  Form,
-  Row,
-  Col,
-  Image,
-  Typography,
-  Radio,
-  Space,
-  Tooltip,
-} from "antd";
+import { Button, Row, Col, Image, Typography } from "antd";
 
-import Icon, { GooglePlusOutlined } from "@ant-design/icons";
+import { GooglePlusOutlined } from "@ant-design/icons";
 
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import bgImage from "./university-background-image.jpg"; // Your custom image
 import { useState } from "react";
 import Lecturer from "./Lecturer";
 export default function Login() {
-  // const onFinish = (values) => {
-  //   console.log("Success:", values);
-  //   message.success("Login successful!");
-  // };
-
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log("Failed:", errorInfo);
-  // };
-
   const { Title } = Typography;
-
   const [role, setRole] = useState("student");
-
+  console.log(role);
   const handleChange = (e) => {
     setRole(e.target.value);
   };
@@ -46,7 +24,6 @@ export default function Login() {
           style={{ marginTop: "5px" }}
         />
       </Col>
-
       <Col
         xs={24}
         sm={18}
