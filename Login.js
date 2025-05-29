@@ -1,20 +1,17 @@
 import React from "react";
 import {
   Button,
-  Input,
-  Form,
+  
   Row,
   Col,
   Image,
   Typography,
-  Radio,
-  Space,
-  Tooltip,
+  
 } from "antd";
 
-import Icon, { GooglePlusOutlined } from "@ant-design/icons";
+import { GooglePlusOutlined } from "@ant-design/icons";
 
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+
 import bgImage from "./university-background-image.jpg"; // Your custom image
 import { useState } from "react";
 import Lecturer from "./Lecturer";
@@ -32,6 +29,7 @@ export default function Login() {
 
   const [role, setRole] = useState("student");
 
+  console.log(role)
   const handleChange = (e) => {
     setRole(e.target.value);
   };
