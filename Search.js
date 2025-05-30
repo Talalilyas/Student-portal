@@ -1,4 +1,4 @@
-// Search.jsx
+
 import React from "react";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
@@ -11,7 +11,7 @@ export default function Search({ onSearch }) {
       suffix={<SearchOutlined style={{ color: "#aaa" }} />}
       style={{
         width: "100%",
-        maxWidth: 600,
+        maxWidth: 750,
         marginTop: "2px",
         marginLeft: "15px",
       }}
