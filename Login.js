@@ -3,7 +3,7 @@ import { Button, Row, Col, Image, Typography } from "antd";
 
 import { GooglePlusOutlined } from "@ant-design/icons";
 
-import bgImage from "./university-background-image.jpg"; // Your custom image
+import bgImage from "./university-background-image.jpg"; 
 import { useState } from "react";
 import Lecturer from "./Lecturer";
 export default function Login() {

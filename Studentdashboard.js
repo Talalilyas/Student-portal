@@ -14,12 +14,24 @@ import {
   Col,
   theme,
   Space,
+  Avatar,
 } from "antd";
 import { useNavigate, Outlet } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
+import image from "./images.jpg";
 import Studentexam from "./Studentexam";
 import Search from "./Search";
-import { AudioOutlined ,ReadOutlined } from "@ant-design/icons";
+import {
+  AudioOutlined,
+  ReadOutlined,
+  AppstoreOutlined,
+  CalendarOutlined,
+  ScheduleOutlined,
+  LogoutOutlined,
+  UserOutlined,
+  LikeOutlined,
+  StarOutlined,
+} from "@ant-design/icons";
 const { Header, Sider, Content } = Layout;
 const { Text } = Typography;
 
@@ -57,37 +69,110 @@ export default function Studentdashboard() {
         collapsed={collapsed}
         breakpoint="md"
         onBreakpoint={(broken) => setCollapsed(broken)}
-       style={{background:"white"}}
+        style={{ background: "white" }}
       >
-        <Menu mode="inline" theme="grey" style={{marginTop:"100px"}}>
+        <Space align="start" style={{ marginLeft: "8px", marginTop: "30px" }}>
+          <Avatar
+            shape="circle"
+            src={image}
+            style={{ width: "60px", height: "60px" }}
+          />
+
+          {!collapsed && (
+            <Space
+              direction="vertical"
+              size={0}
+              style={{ marginTop: "10px", marginLeft: "19px" }}
+            >
+              <Text strong>Student 1</Text>
+
+              <Space>
+                <Text>Status:</Text>
+                <Text style={{ color: "green" }}>Active</Text>
+              </Space>
+            </Space>
+          )}
+        </Space>
+
+        <Menu mode="inline" theme="grey">
           <Menu.Item
             key="courses"
             icon={<UnorderedListOutlined />}
             onClick={() => navigate("mycourse")}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
           >
             My Courses
           </Menu.Item>
- 
-          <Menu.Item key="grade" icon={<ReadOutlined />} onClick={() => navigate("grade")}>
-            Grade
+
+          <Menu.Item
+            key="grade"
+            icon={<ReadOutlined />}
+            onClick={() => navigate("grade")}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
+          >
+            Course Catalouge
           </Menu.Item>
-          <Menu.Item key="settings" onClick={() => navigate("settings")}>
-            Settings
+          <Menu.Item
+            key="settings"
+            icon={<AppstoreOutlined />}
+            onClick={() => navigate("settings")}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
+          >
+            My progress
           </Menu.Item>
-          <Menu.Item key="quotes" onClick={() => navigate("quotes")}>
-            Quotes
+          <Menu.Item
+            key="quotes"
+            icon={<CalendarOutlined />}
+            onClick={() => navigate("quotes")}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
+          >
+            Acdemic Calender
           </Menu.Item>
-          <Menu.Item key="result-form" onClick={() => navigate("result-form")}>
-            Student Result Form
+          <Menu.Item
+            key="result-form"
+            icon={<ScheduleOutlined />}
+            onClick={() => navigate("result-form")}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
+          >
+            My progress
           </Menu.Item>
-          <Menu.Item key="signout">
-            <Button
-              type="link"
-              onClick={handleSignOut}
-              style={{ color: "#fff" }}
-            >
-              Sign Out
-            </Button>
+          <Divider size="small" />
+
+          <Menu.Item
+            key="signout"
+            type="link"
+            onClick={handleSignOut}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
+            icon={<UserOutlined />}
+          >
+            Study Card
+          </Menu.Item>
+          <Menu.Item
+            key="signout"
+            type="link"
+            onClick={handleSignOut}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
+            icon={<LikeOutlined />}
+          >
+            Recommendations
+          </Menu.Item>
+          <Menu.Item
+            key="signout"
+            type="link"
+            onClick={handleSignOut}
+            style={{ paddingTop: "10px", marginTop: "20px" }}
+            icon={<StarOutlined />}
+          >
+            My rating
+          </Menu.Item>
+          <Menu.Item
+            key="signout"
+            type="link"
+            onClick={handleSignOut}
+            style={{ color: "red", paddingTop: "10px", marginTop: "20px" }}
+            icon={<LogoutOutlined />}
+          >
+            Sign Out
           </Menu.Item>
         </Menu>
       </Sider>
@@ -101,7 +186,13 @@ export default function Studentdashboard() {
             xl={18}
             style={{ paddingLeft: "16px", paddingTop: "10px" }}
           >
-            <Header style={{ background: colorBgContainer, padding: "0 16px"  ,borderRadius: borderRadiusLG, }}>
+            <Header
+              style={{
+                background: colorBgContainer,
+                padding: "0 16px",
+                borderRadius: borderRadiusLG,
+              }}
+            >
               <Row align="middle" justify="space-between">
                 <Col xs={4} sm={4} md={2} lg={1}>
                   <Button
@@ -111,56 +202,80 @@ export default function Studentdashboard() {
                     }
                     onClick={() => setCollapsed(!collapsed)}
                     style={{ fontSize: "18px" }}
+                    
                   />
                 </Col>
 
                 <Col xs={20} sm={20} md={22} lg={23}>
-                  <Search onSearch={onSearch} suffix={suffix}  />
+                  <Search onSearch={onSearch} suffix={suffix} />
                 </Col>
               </Row>
             </Header>
           </Col>
+          <Col lg={6} md={6} sm={24} xl={6} style={{marigntop:"20px"}}>
+    <Content
+      style={{
+marginTop:"10px",
+marginLeft:"55px",
+      height:"70px",
+        background: colorBgContainer,
+       
+      }}
+    ></Content>
+    </Col>
         </Row>
-        <Row style={{ paddingLeft: "16px", paddingTop: "20px" }}>
-          <Col lg={18} md={18} sm={18} xl={18}>
-            <Content
-              style={{
-                padding: "10px",
-                minHeight: 280,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              <UnorderedListOutlined style={{ fontSize: "16px" }} />
-              <Text type="secondary" style={{ marginLeft: "2px" }}>
-                <Space></Space> <Space></Space> MY Courses
-              </Text>
-              <Divider size="small" />
-              <Outlet />
-            </Content>
-          </Col>
-        </Row>
-        <Row style={{ paddingLeft: "16px", paddingTop: "20px" }}>
-          <Col lg={18} sm={18} xl={18} md={18}>
-            <Content
-              style={{
-                padding: "10px",
-                paddingLeft: "10px",
-                minHeight: 200,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              <UnorderedListOutlined />
-              <Text type="secondary ">
-                {" "}
-                <Space></Space>Upcoming exams
-              </Text>
-              <Divider size="small" />
-              <Studentexam />
-            </Content>
-          </Col>
-        </Row>
+
+        <Layout>
+          <Content style={{ padding: "16px", background: "#f5f5f5" }}>
+            <Row gutter={[16, 16]}>
+              <Col span={24}>
+                <Content
+                  style={{
+                    padding: "10px",
+                    minHeight: 280,
+                    background: colorBgContainer,
+                    borderRadius: borderRadiusLG,
+                  }}
+                >
+                  <UnorderedListOutlined style={{ fontSize: "16px" }} />
+                  <Text type="secondary" style={{ marginLeft: "2px" }}>
+                    MY Courses
+                  </Text>
+                  <Divider size="small" />
+                  <Outlet />
+                </Content>
+              </Col>
+            </Row>
+
+            <Row gutter={[16, 16]} style={{ marginTop: "20px" }}>
+              <Col span={24}>
+                <Content
+                  style={{
+                    padding: "10px",
+                    minHeight: 200,
+                    background: colorBgContainer,
+                    borderRadius: borderRadiusLG,
+                  }}
+                >
+                  <UnorderedListOutlined />
+                  <Text type="secondary"> Upcoming Exams</Text>
+                  <Divider size="small" />
+                  <Studentexam />
+                </Content>
+              </Col>
+            </Row>
+          </Content>
+
+          <Sider
+            width={240}
+            collapsible={false}
+            style={{ background: "white", borderLeft: "1px solid #f0f0f0" }}
+          >
+            <div style={{ padding: "16px" }}>
+              <Text strong>Notifications</Text>
+            </div>
+          </Sider>
+        </Layout>
       </Layout>
     </Layout>
   );
