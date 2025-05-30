@@ -32,6 +32,7 @@ import {
   LikeOutlined,
   StarOutlined,
 } from "@ant-design/icons";
+import Calender from "./Calender";
 const { Header, Sider, Content } = Layout;
 const { Text } = Typography;
 
@@ -93,13 +94,14 @@ export default function Studentdashboard() {
             </Space>
           )}
         </Space>
+        <Divider size="medium" />
 
         <Menu mode="inline" theme="grey">
           <Menu.Item
             key="courses"
             icon={<UnorderedListOutlined />}
             onClick={() => navigate("mycourse")}
-            style={{ paddingTop: "10px", marginTop: "20px" }}
+            style={{ paddingTop: "10px", marginTop: "15px" }}
           >
             My Courses
           </Menu.Item>
@@ -108,7 +110,7 @@ export default function Studentdashboard() {
             key="grade"
             icon={<ReadOutlined />}
             onClick={() => navigate("grade")}
-            style={{ paddingTop: "10px", marginTop: "20px" }}
+            style={{ paddingTop: "10px", marginTop: "15px" }}
           >
             Course Catalouge
           </Menu.Item>
@@ -136,7 +138,7 @@ export default function Studentdashboard() {
           >
             My progress
           </Menu.Item>
-          <Divider size="small" />
+          <Divider size="medium" />
 
           <Menu.Item
             key="signout"
@@ -178,18 +180,11 @@ export default function Studentdashboard() {
       </Sider>
 
       <Layout>
-        <Row>
-          <Col
-            lg={18}
-            sm={18}
-            md={18}
-            xl={18}
-            style={{ paddingLeft: "16px", paddingTop: "10px" }}
-          >
+        <Row wrap={false}>
+          <Col flex="auto" style={{ paddingLeft: "16px", paddingTop: "10px" }}>
             <Header
               style={{
                 background: colorBgContainer,
-                padding: "0 16px",
                 borderRadius: borderRadiusLG,
               }}
             >
@@ -202,7 +197,6 @@ export default function Studentdashboard() {
                     }
                     onClick={() => setCollapsed(!collapsed)}
                     style={{ fontSize: "18px" }}
-                    
                   />
                 </Col>
 
@@ -212,17 +206,16 @@ export default function Studentdashboard() {
               </Row>
             </Header>
           </Col>
-          <Col lg={6} md={6} sm={24} xl={6} style={{marigntop:"20px"}}>
-    <Content
-      style={{
-marginTop:"10px",
-marginLeft:"55px",
-      height:"70px",
-        background: colorBgContainer,
-       
-      }}
-    ></Content>
-    </Col>
+
+          <Col flex="300px" style={{ paddingLeft: "10px" }}>
+            <Content
+              style={{
+                height: "80px",
+                background: colorBgContainer,
+                marginLeft: "11px",
+              }}
+            />
+          </Col>
         </Row>
 
         <Layout>
@@ -265,16 +258,21 @@ marginLeft:"55px",
               </Col>
             </Row>
           </Content>
-
-          <Sider
-            width={240}
-            collapsible={false}
-            style={{ background: "white", borderLeft: "1px solid #f0f0f0" }}
-          >
-            <div style={{ padding: "16px" }}>
-              <Text strong>Notifications</Text>
-            </div>
-          </Sider>
+ <Sider
+      width={260}
+      breakpoint="sm" // collapses at small screens
+      collapsedWidth="0"
+      style={{
+        background: "#fff",
+        borderLeft: "1px solid #f0f0f0",
+        padding: "16px",
+        minHeight: "100vh",
+      }}
+    >
+      <div style={{ maxWidth: "100%", width: "100%" }}>
+        <Calender />
+      </div>
+    </Sider>
         </Layout>
       </Layout>
     </Layout>
