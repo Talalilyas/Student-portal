@@ -24,7 +24,7 @@ export default function Sidebar({ collapsed, setCollapsed, handleSignOut }) {
 
   return (
     <Sider
-      width={250}
+      width={260}
       trigger={null}
       collapsible
       collapsed={collapsed}
@@ -48,34 +48,34 @@ export default function Sidebar({ collapsed, setCollapsed, handleSignOut }) {
       <Divider size="medium" />
 
       <Menu mode="inline" theme="light">
-        <Menu.Item key="courses" icon={<UnorderedListOutlined />} onClick={() => navigate("mycourse")}>
+        <Menu.Item key="courses" icon={<UnorderedListOutlined />} onClick={() => navigate("mycourse")} style={{marginTop:"15px"}}>
           My Courses
         </Menu.Item>
-        <Menu.Item key="grade" icon={<ReadOutlined />} onClick={() => navigate("grade")}>
+        <Menu.Item key="grade" icon={<ReadOutlined />} onClick={() => navigate("grade")}  style={{marginTop:"15px"}}>
           Course Catalogue
         </Menu.Item>
-        <Menu.Item key="settings" icon={<AppstoreOutlined />} onClick={() => navigate("settings")}>
+        <Menu.Item key="settings" icon={<AppstoreOutlined />} onClick={() => navigate("settings")}  style={{marginTop:"15px"}}>
           My Progress
         </Menu.Item>
-        <Menu.Item key="calendar" icon={<CalendarOutlined />} onClick={() => navigate("quotes")}>
+        <Menu.Item key="calendar" icon={<CalendarOutlined />} onClick={() => navigate("quotes")}  style={{marginTop:"15px"}}>
           Academic Calendar
         </Menu.Item>
-        <Menu.Item key="result-form" icon={<ScheduleOutlined />} onClick={() => navigate("result-form")}>
+        <Menu.Item key="result-form" icon={<ScheduleOutlined />} onClick={() => navigate("result-form")}  style={{marginTop:"15px"}}>
           My Results
         </Menu.Item>
 
         <Divider size="medium" />
 
-        <Menu.Item key="study-card" icon={<UserOutlined />} onClick={handleSignOut}>
+        <Menu.Item key="study-card" icon={<UserOutlined />} onClick={handleSignOut}  style={{marginTop:"15px"}}>
           Study Card
         </Menu.Item>
-        <Menu.Item key="recommendations" icon={<LikeOutlined />} onClick={handleSignOut}>
+        <Menu.Item key="recommendations" icon={<LikeOutlined />} onClick={handleSignOut}  style={{marginTop:"15px"}}>
           Recommendations
         </Menu.Item>
-        <Menu.Item key="rating" icon={<StarOutlined />} onClick={handleSignOut}>
+        <Menu.Item key="rating" icon={<StarOutlined />} onClick={handleSignOut}  style={{marginTop:"15px"}}>
           My Rating
         </Menu.Item>
-        <Menu.Item key="signout" icon={<LogoutOutlined />} style={{ color: "red" }} onClick={handleSignOut}>
+        <Menu.Item key="signout" icon={<LogoutOutlined />} style={{ color: "red" ,marginTop:"15px"}} onClick={handleSignOut} >
           Sign Out
         </Menu.Item>
       </Menu>

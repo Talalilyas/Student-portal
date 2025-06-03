@@ -3,7 +3,7 @@ import useFetchQuotes from "./Hookfetchdata";
 import { Table, Row, Col } from "antd";
 
 export default function Coursedatatable() {
-  const { data, loading } = useFetchQuotes("http://localhost:8080/score");  
+  const { data, loading } = useFetchQuotes("http://localhost:8080/score");
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -26,7 +26,7 @@ export default function Coursedatatable() {
         <Table
           dataSource={data}
           columns={columns}
-          pagination={{ pageSize: 5 }}
+          pagination={{ pageSize: 6 }}
           scroll={{ x: "max-content" }}
           size="small"
           bordered={false}

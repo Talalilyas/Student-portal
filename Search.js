@@ -13,7 +13,7 @@ export default function Search({ onSearch }) {
         width: "100%",
         maxWidth: 750,
         marginTop: "2px",
-        marginLeft: "15px",
+        marginLeft: "12px",
       }}
     />
   );

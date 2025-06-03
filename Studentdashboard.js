@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 
 import Sidebar from "./Sidebar";
-import HeaderBar from "./HeaderBar";
+import HeaderBar from "./Headerpage";
 import MainContent from "./MainContent";
 
 const { Header, Content } = Layout;

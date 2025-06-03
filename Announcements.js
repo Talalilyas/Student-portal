@@ -6,15 +6,21 @@ const { Text } = Typography;
 
 export default function Announcements() {
   return (
-    <Content style={{ padding: "10px", background: "#fff", borderRadius: "12px" }}>
-      <Divider size="large" />
-      <Text style={{ fontFamily: "sans-serif", fontSize: "22px" }}>
+    <Content style={{  background: "#fff"}}>
+
+      <Text style={{ fontFamily: "sans-serif", fontSize: "22px" ,paddingLeft:"19px"}}>
         Announcements
       </Text>
-      <Row gutter={16}>
+      <Row >
         <Col span={24}>
-          <Card variant="borderless" style={{ height: "100px" }}>
-            Card content
+          <Card variant="borderless" style={{ height: "100px",width:"285px" }}>
+        Midterm exams start next week. Check your schedule now.
+          </Card>
+           <Card variant="borderless" style={{ height: "100px",width:"285px" }}>
+      New courses available for Fall 2025 registration. Enroll soon.
+          </Card>
+           <Card variant="borderless" style={{ height: "100px",width:"285px" }}>
+     Graduation form deadline approaching. Submit documents by June 25.
           </Card>
         </Col>
       </Row>

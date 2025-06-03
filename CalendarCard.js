@@ -8,13 +8,14 @@ const { Text } = Typography;
 
 export default function CalendarCard() {
   return (
-    <Content style={{ padding: "10px", background: "#fff", borderRadius: "12px" }}>
+    <Content style={{ padding: "10px", background: "#fff"}}>
       <UnorderedListOutlined />
       <Text type="secondary" style={{ marginLeft: "5px" }}>
         Academic Calendar
       </Text>
       <Divider size="small" />
       <Calender />
+       <Divider size="small" />
     </Content>
   );
 }
