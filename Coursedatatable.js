@@ -1,12 +1,9 @@
 import React from "react";
 import useFetchQuotes from "./Hookfetchdata";
-import { Table, Row, Col, Typography } from "antd";
-
-const { Title } = Typography;
+import { Table, Row, Col } from "antd";
 
 export default function Coursedatatable() {
-  const { data, loading } = useFetchQuotes("http://localhost:8080/score");
-
+  const { data, loading } = useFetchQuotes("http://localhost:8080/score");  
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -25,11 +22,11 @@ export default function Coursedatatable() {
 
   return (
     <Row style={{ padding: 1 }}>
-      <Col xs={24} sm={22} md={20} lg={18} xl={24}>
+      <Col xs={24} sm={22} md={20} lg={16} xl={24}>
         <Table
           dataSource={data}
           columns={columns}
-          pagination={{ pageSize: 4 }}
+          pagination={{ pageSize: 5 }}
           scroll={{ x: "max-content" }}
           size="small"
           bordered={false}
