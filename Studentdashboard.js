@@ -4,37 +4,26 @@ import {
   MenuUnfoldOutlined,
   UnorderedListOutlined,
   AudioOutlined,
-  ReadOutlined,
-  AppstoreOutlined,
-  CalendarOutlined,
-  ScheduleOutlined,
-  LogoutOutlined,
-  UserOutlined,
-  LikeOutlined,
-  StarOutlined,
 } from "@ant-design/icons";
 import {
   Button,
   Layout,
-  Menu,
   Typography,
   Divider,
   Row,
   Col,
   theme,
-  Space,
-  Avatar,
   Card,
 } from "antd";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
-import image from "./images.jpg";
+
 import Studentexam from "./Studentexam";
 import Search from "./Search";
 import Calender from "./Calender";
 import Sidebar from "./Sidebar";
 
-const { Header, Sider, Content } = Layout;
+const { Header,  Content } = Layout;
 const { Text } = Typography;
 
 export default function Studentdashboard() {
@@ -46,9 +35,11 @@ export default function Studentdashboard() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
-
+ 
+     console.log(isLogin)
   const onSearch = (value) => {
     console.log("Search value:", value);
+
   };
 
   const suffix = <AudioOutlined style={{ fontSize: 16, color: "#1677ff" }} />;
@@ -60,7 +51,7 @@ export default function Studentdashboard() {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sidebar/>
+      <Sidebar />
 
       <Layout>
         <Row wrap={false}>
@@ -164,13 +155,16 @@ export default function Studentdashboard() {
                     }}
                   >
                     <Divider size="large" />
-                    <Text style={{ fontFamily: "sans-serif", fontSize: "22px" }}>
+                    <Text
+                      style={{ fontFamily: "sans-serif", fontSize: "22px" }}
+                    >
                       Announcements
                     </Text>
                     <Row gutter={16}>
                       <Col span={24}>
                         <Card variant="borderless" style={{ height: "100px" }}>
-                          Midterm exams start next week. Check your schedule now.
+                          Midterm exams start next week. Check your schedule
+                          now.
                         </Card>
                       </Col>
                       <Col span={24}>
