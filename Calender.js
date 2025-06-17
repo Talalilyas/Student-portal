@@ -1,5 +1,5 @@
-import { Calendar, Radio, Row, Select, theme, Col } from "antd";
-import { useState } from "react";
+import { Calendar, Radio, Row, Select, Typography, theme } from 'antd';
+import { useState } from 'react';
 
 export default function Calender() {
   const { token } = theme.useToken();
@@ -7,12 +7,12 @@ export default function Calender() {
 
   const onPanelChange = (value, mode) => {
     setCalendarValue(value);
-    console.log(value.format("YYYY-MM-DD"), mode);
+    console.log(value.format('YYYY-MM-DD'), mode);
   };
 
   const wrapperStyle = {
     width: "100%",
-
+    border: `1px solid ${token.colorBorderSecondary}`,
     borderRadius: token.borderRadiusLG,
     padding: 8,
     background: "#fff",
@@ -20,6 +20,8 @@ export default function Calender() {
 
   return (
     <div style={wrapperStyle}>
+    
+
       <Calendar
         fullscreen={false}
         value={calendarValue}
@@ -39,42 +41,34 @@ export default function Calender() {
           }));
 
           return (
-            <Row wrap style={{ marginTop: 8 }} align="middle">
-              <Col xs={24} sm={24} md={12}>
-                <Radio.Group
-                  size="small"
-                  onChange={(e) => onTypeChange(e.target.value)}
-                  value={type}
-                  style={{ width: "100%" }}
-                >
-                  <Radio.Button value="month">Month</Radio.Button>
-                  <Radio.Button value="year">Year</Radio.Button>
-                </Radio.Group>
-              </Col>
+            <Row gutter={[8, 8]} wrap align="middle" style={{ marginTop: 8 }}>
+              <Radio.Group
+                size="small"
+                onChange={e => onTypeChange(e.target.value)}
+                value={type}
+                style={{ display: "flex", gap: 8 }}
+              >
+                <Radio.Button value="month">Month</Radio.Button>
+                <Radio.Button value="year">Year</Radio.Button>
+              </Radio.Group>
 
-              <Col xs={12} sm={12} md={6}>
-                <Select
-                  size="small"
-                  value={year}
-                  onChange={(newYear) => onChange(value.clone().year(newYear))}
-                  options={yearOptions}
-                  style={{ width: "100%" }}
-                  aria-label="Select year"
-                />
-              </Col>
+              <Select
+                size="small"
+                value={year}
+                onChange={newYear => onChange(value.clone().year(newYear))}
+                options={yearOptions}
+                style={{ width: 100 }}
+                aria-label="Select year"
+              />
 
-              <Col xs={12} sm={12} md={6}>
-                <Select
-                  size="small"
-                  value={value.month()}
-                  onChange={(newMonth) =>
-                    onChange(value.clone().month(newMonth))
-                  }
-                  options={months}
-                  style={{ width: "100%" }}
-                  aria-label="Select month"
-                />
-              </Col>
+              <Select
+                size="small"
+                value={value.month()}
+                onChange={newMonth => onChange(value.clone().month(newMonth))}
+                options={months}
+                style={{ width: 100 }}
+                aria-label="Select month"
+              />
             </Row>
           );
         }}

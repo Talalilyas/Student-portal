@@ -35,15 +35,11 @@ export default function Studentlogin() {
 
       const data = await response.json();
       message.success("Login successful!");
-
-
-
-      setAccessToken(data);
-
+      setAccessToken(data.token);
       setUser({ username });
       setIsLogin(true);
       console.log(users)
-      navigate("/Studentdashboard");
+      navigate("/studentdashboard");
     } catch (err) {
       message.error(`Error: ${err.message}`);
     }

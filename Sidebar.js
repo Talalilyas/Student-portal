@@ -9,9 +9,25 @@ import {
   LogoutOutlined,
   UserOutlined,
   LikeOutlined,
+
+  MenuUnfoldOutlined,
+  MenuFoldOutlined, 
   StarOutlined,
 } from "@ant-design/icons";
-import { Menu, Space, Avatar, Divider, Layout, Typography } from "antd";
+import {
+  Button,
+  Layout,
+  Menu,
+  Typography,
+  Divider,
+  Row,
+  Col,
+  theme,
+  Space,
+  Avatar,
+  Card,
+} from "antd"
+
 import { useNavigate } from "react-router-dom";
 import image from "./images.jpg";
 import { useState } from "react";
@@ -19,19 +35,21 @@ import { useState } from "react";
 const { Sider } = Layout;
 const { Text } = Typography;
 
-export default function Sidebar({  handleSignOut }) {
+export default function Sidebar({ handleSignOut  }) {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Sider
-      width={260}
-      trigger={null}
-      collapsible
+ 
+      width={280}
+    
       collapsed={collapsed}
-      breakpoint="md"
-      onBreakpoint={(broken) => setCollapsed(broken)}
       style={{ background: "white" }}
+      breakpoint="md"
+      onBreakpoint={(broken) => setCollapsed(broken)} 
     >
+     
+      
       <Space align="start" style={{ marginLeft: "8px", marginTop: "30px" }}>
         <Avatar
           shape="circle"
