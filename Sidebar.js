@@ -1,7 +1,7 @@
 import React from "react";
 import {
 
-  UnorderedListOutlined,
+
   ReadOutlined,
   AppstoreOutlined,
   CalendarOutlined,
@@ -10,19 +10,15 @@ import {
   UserOutlined,
   LikeOutlined,
 
-  MenuUnfoldOutlined,
-  MenuFoldOutlined, 
   StarOutlined,
 } from "@ant-design/icons";
 import {
-  Button,
+
   Layout,
   Menu,
   Typography,
   Divider,
-  Row,
-  Col,
-  theme,
+  
   Space,
   Avatar,
   Card,
@@ -74,14 +70,7 @@ export default function Sidebar({ handleSignOut  }) {
       <Divider size="medium" />
 
       <Menu mode="inline" theme="light">
-        <Menu.Item
-          key="courses"
-          icon={<UnorderedListOutlined />}
-          onClick={() => navigate("mycourse")}
-          style={{ marginTop: "15px" }}
-        >
-          My Courses
-        </Menu.Item>
+        
         <Menu.Item
           key="grade"
           icon={<ReadOutlined />}
@@ -93,7 +82,7 @@ export default function Sidebar({ handleSignOut  }) {
         <Menu.Item
           key="settings"
           icon={<AppstoreOutlined />}
-          onClick={() => navigate("settings")}
+          onClick={() => navigate("myprogress")}
           style={{ marginTop: "15px" }}
         >
           My Progress
@@ -101,7 +90,7 @@ export default function Sidebar({ handleSignOut  }) {
         <Menu.Item
           key="calendar"
           icon={<CalendarOutlined />}
-          onClick={() => navigate("quotes")}
+          onClick={() => navigate("academiccalendar")}
           style={{ marginTop: "15px" }}
         >
           Academic Calendar
@@ -109,10 +98,10 @@ export default function Sidebar({ handleSignOut  }) {
         <Menu.Item
           key="result-form"
           icon={<ScheduleOutlined />}
-          onClick={() => navigate("result-form")}
+          onClick={() => navigate("resultcard")}
           style={{ marginTop: "15px" }}
         >
-          My Results
+           Results Card
         </Menu.Item>
 
         <Divider size="medium" />
