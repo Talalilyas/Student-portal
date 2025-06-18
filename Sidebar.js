@@ -1,8 +1,7 @@
 import React from "react";
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UnorderedListOutlined,
+
+
   ReadOutlined,
   AppstoreOutlined,
   CalendarOutlined,
@@ -10,9 +9,21 @@ import {
   LogoutOutlined,
   UserOutlined,
   LikeOutlined,
+
   StarOutlined,
 } from "@ant-design/icons";
-import { Menu, Space, Avatar, Divider, Layout, Typography } from "antd";
+import {
+
+  Layout,
+  Menu,
+  Typography,
+  Divider,
+  
+  Space,
+  Avatar,
+  Card,
+} from "antd"
+
 import { useNavigate } from "react-router-dom";
 import image from "./images.jpg";
 import { useState } from "react";
@@ -20,19 +31,21 @@ import { useState } from "react";
 const { Sider } = Layout;
 const { Text } = Typography;
 
-export default function Sidebar({  handleSignOut }) {
+export default function Sidebar({ handleSignOut  }) {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Sider
-      width={260}
-      trigger={null}
-      collapsible
+ 
+      width={280}
+    
       collapsed={collapsed}
-      breakpoint="md"
-      onBreakpoint={(broken) => setCollapsed(broken)}
       style={{ background: "white" }}
+      breakpoint="md"
+      onBreakpoint={(broken) => setCollapsed(broken)} 
     >
+     
+      
       <Space align="start" style={{ marginLeft: "8px", marginTop: "30px" }}>
         <Avatar
           shape="circle"
@@ -57,14 +70,7 @@ export default function Sidebar({  handleSignOut }) {
       <Divider size="medium" />
 
       <Menu mode="inline" theme="light">
-        <Menu.Item
-          key="courses"
-          icon={<UnorderedListOutlined />}
-          onClick={() => navigate("mycourse")}
-          style={{ marginTop: "15px" }}
-        >
-          My Courses
-        </Menu.Item>
+        
         <Menu.Item
           key="grade"
           icon={<ReadOutlined />}
@@ -76,7 +82,7 @@ export default function Sidebar({  handleSignOut }) {
         <Menu.Item
           key="settings"
           icon={<AppstoreOutlined />}
-          onClick={() => navigate("settings")}
+          onClick={() => navigate("myprogress")}
           style={{ marginTop: "15px" }}
         >
           My Progress
@@ -84,7 +90,7 @@ export default function Sidebar({  handleSignOut }) {
         <Menu.Item
           key="calendar"
           icon={<CalendarOutlined />}
-          onClick={() => navigate("quotes")}
+          onClick={() => navigate("academiccalendar")}
           style={{ marginTop: "15px" }}
         >
           Academic Calendar
@@ -92,10 +98,10 @@ export default function Sidebar({  handleSignOut }) {
         <Menu.Item
           key="result-form"
           icon={<ScheduleOutlined />}
-          onClick={() => navigate("result-form")}
+          onClick={() => navigate("resultcard")}
           style={{ marginTop: "15px" }}
         >
-          My Results
+           Results Card
         </Menu.Item>
 
         <Divider size="medium" />

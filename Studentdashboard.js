@@ -4,48 +4,49 @@ import {
   MenuUnfoldOutlined,
   UnorderedListOutlined,
   AudioOutlined,
-  ReadOutlined,
-  AppstoreOutlined,
-  CalendarOutlined,
-  ScheduleOutlined,
-  LogoutOutlined,
-  UserOutlined,
-  LikeOutlined,
-  StarOutlined,
 } from "@ant-design/icons";
 import {
   Button,
   Layout,
-  Menu,
   Typography,
   Divider,
   Row,
   Col,
   theme,
-  Space,
-  Avatar,
   Card,
 } from "antd";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
-import image from "./images.jpg";
+import Sidebar from "./Sidebar";
+import Calender from "./Calender1";
 import Studentexam from "./Studentexam";
 import Search from "./Search";
-import Calender from "./Calender";
-import Sidebar from "./Sidebar";
+import WelcomeDashboard from "./WelcomeDashboard";
+import Myprogress from "./Myprogress"; // ✅ Import MyProgress
+import Resultcard from "./Resultcard";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 const { Text } = Typography;
 
 export default function Studentdashboard() {
   const [collapsed, setCollapsed] = useState(false);
   const [isLogin, setIsLogin] = useLocalStorageState("isLogin", false);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
+
+  // Routing-based flags
+  const isWelcomePage = currentPath === "/studentdashboard";
+  const isAcademicCalendarPage = currentPath === "/studentdashboard/academiccalendar";
+  const isMyCoursePage = currentPath === "/studentdashboard/mycourse";
+  const isMyProgressPage = currentPath === "/studentdashboard/myprogress"; // ✅ New condition
+const isResultcard = currentPath === "/studentdashboard/resultcard";
+
 
   const onSearch = (value) => {
     console.log("Search value:", value);
@@ -60,11 +61,11 @@ export default function Studentdashboard() {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sidebar/>
+      <Sidebar handleSignOut={handleSignOut} />
 
       <Layout>
         <Row wrap={false}>
-          <Col flex="auto" style={{ paddingLeft: "16px", paddingTop: "10px" }}>
+          <Col flex="auto" style={{ paddingLeft: "16px", paddingTop: "7px" }}>
             <Header
               style={{
                 background: colorBgContainer,
@@ -92,101 +93,152 @@ export default function Studentdashboard() {
 
         <Layout>
           <Content style={{ padding: "16px", background: "#f5f5f5" }}>
-            <Row gutter={[16, 16]}>
-              <Col xs={24} lg={17}>
-                <Content
-                  style={{
-                    padding: "10px",
-                    background: colorBgContainer,
-                    borderRadius: borderRadiusLG,
-                  }}
-                >
-                  <UnorderedListOutlined />
-                  <Text type="secondary" style={{ marginLeft: "5px" }}>
-                    MY Courses
-                  </Text>
-                  <Divider size="small" />
-                  <Outlet />
-                </Content>
-              </Col>
+            {isWelcomePage ? (
+              <Content
+                style={{
+                  padding: "10px",
+                  background: colorBgContainer,
+                  borderRadius: borderRadiusLG,
+                }}
+              >
+                <WelcomeDashboard />
+              </Content>
+            ) : isAcademicCalendarPage ? (
+              <Content
+                style={{
+                  padding: "10px",
+                  background: colorBgContainer,
+                  borderRadius: borderRadiusLG,
+                }}
+              >
+                <Calender />
+              </Content>
+            ) : isMyProgressPage ? ( // ✅ My Progress rendering
+              <Content
+                style={{
+                  padding: "10px",
+                  background: colorBgContainer,
+                  borderRadius: borderRadiusLG,
+                }}
+              >
+                <Myprogress />
+              </Content>
+            ) : isResultcard ? (
 
-              {/* Show calendar only on main or 'mycourse' route */}
-              {["/Studentdashboard", "/Studentdashboard/mycourse"].includes(
-                currentPath
-              ) && (
-                <Col xs={24} lg={7}>
-                  <Content
-                    style={{
-                      padding: "10px",
-                      background: colorBgContainer,
-                      borderRadius: borderRadiusLG,
-                    }}
-                  >
-                    <UnorderedListOutlined />
-                    <Text type="secondary" style={{ marginLeft: "5px" }}>
-                      Academic Calendar
-                    </Text>
-                    <Divider size="small" />
-                    <Calender />
-                  </Content>
-                </Col>
-              )}
-            </Row>
 
-            {/* Show exams and announcements only on main or 'mycourse' route */}
-            {["/Studentdashboard", "/Studentdashboard/mycourse"].includes(
-              currentPath
-            ) && (
-              <Row gutter={[16, 16]}>
-                <Col xs={24} lg={17} style={{ paddingTop: "5px" }}>
-                  <Content
-                    style={{
-                      padding: "10px",
-                      background: colorBgContainer,
-                      borderRadius: borderRadiusLG,
-                    }}
-                  >
-                    <UnorderedListOutlined />
-                    <Text type="secondary" style={{ marginLeft: "5px" }}>
-                      Upcoming Exams
-                    </Text>
-                    <Divider size="small" />
-                    <Studentexam />
-                  </Content>
-                </Col>
+             <Content
+  style={{
+    padding: "10px",
+    background: colorBgContainer,
+    borderRadius: borderRadiusLG,
+  }}
+>
+  <Resultcard />
+</Content>
+            ): isMyCoursePage ? (
+              <Content
+                style={{
+                  padding: "10px",
+                  background: colorBgContainer,
+                  borderRadius: borderRadiusLG,
+                }}
+              >
+                <UnorderedListOutlined />
+                <Text type="secondary" style={{ marginLeft: "5px" }}>
+                  MY Courses
+                </Text>
+                <Divider size="small" />
+                <Outlet />
+              </Content>
+            ) : (
+              <>
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} lg={17}>
+                    <Content
+                      style={{
+                        padding: "10px",
+                        background: colorBgContainer,
+                        borderRadius: borderRadiusLG,
+                      }}
+                    >
+                      <UnorderedListOutlined />
+                      <Text type="secondary" style={{ marginLeft: "5px" }}>
+                        MY Courses
+                      </Text>
+                      <Divider size="small" />
+                      <Outlet />
+                    </Content>
+                  </Col>
 
-                <Col lg={7} sm={24}>
-                  <Content
-                    style={{
-                      padding: "10px",
-                      background: colorBgContainer,
-                      borderRadius: borderRadiusLG,
-                    }}
-                  >
-                    <Divider size="large" />
-                    <Text style={{ fontFamily: "sans-serif", fontSize: "22px" }}>
-                      Announcements
-                    </Text>
-                    <Row gutter={16}>
-                      <Col span={24}>
-                        <Card variant="borderless" style={{ height: "100px" }}>
-                          Midterm exams start next week. Check your schedule now.
-                        </Card>
-                      </Col>
-                      <Col span={24}>
-                        <Card variant="borderless" style={{ height: "100px" }}>
-                          New courses available for Fall 2025. Enroll soon.
-                        </Card>
-                      </Col>
-                      <Col span={24}>
-                        <Card variant="borderless" style={{ height: "100px" }}>
-                          Graduation form deadline is June 25. Submit early.
-                        </Card>
-                      </Col>
-                    </Row>
-                  </Content>
-                </Col>
-              </Row>
+                  <Col xs={24} lg={7}>
+                    <Content
+                      style={{
+                        padding: "10px",
+                        background: colorBgContainer,
+                      }}
+                    >
+                      <UnorderedListOutlined />
+                      <Text type="secondary" style={{ marginLeft: "5px" }}>
+                        Academic Calendar
+                      </Text>
+                      <Divider size="small" />
+                      <Calender />
+                    </Content>
+                  </Col>
+                </Row>
+
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} lg={17} style={{ paddingTop: "5px" }}>
+                    <Content
+                      style={{
+                        padding: "10px",
+                        background: colorBgContainer,
+                        borderRadius: borderRadiusLG,
+                      }}
+                    >
+                      <UnorderedListOutlined />
+                      <Text type="secondary" style={{ marginLeft: "5px" }}>
+                        Upcoming Exams
+                      </Text>
+                      <Divider size="small" />
+                      <Studentexam />
+                    </Content>
+                  </Col>
+
+                  <Col lg={7} sm={24} xl={7} md={7}>
+                    <Content
+                      style={{
+                        padding: "10px",
+                        background: colorBgContainer,
+                      }}
+                    >
+                      <Divider size="large" />
+                      <Text
+                        style={{ fontFamily: "sans-serif", fontSize: "22px" }}
+                      >
+                        Announcements
+                      </Text>
+                      <Row gutter={16}>
+                        <Col span={24}>
+                          <Card variant="borderless" style={{ height: "70px" }}>
+                            Midterm exams start next week. Check your schedule now.
+                          </Card>
+                        </Col>
+                        <Col span={24}>
+                          <Card variant="borderless" style={{ height: "70px" }}>
+                            New courses available for Fall 2025. Enroll soon.
+                          </Card>
+                        </Col>
+                        <Col span={24}>
+                          <Card variant="borderless" style={{ height: "70px" }}>
+                            Graduation form deadline is June 25. Submit early.
+                          </Card>
+                        </Col>
+                      </Row>
+                    </Content>
+                  </Col>
+                </Row>
+              </>
             )}
           </Content>
         </Layout>

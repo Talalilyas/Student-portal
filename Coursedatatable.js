@@ -26,7 +26,7 @@ export default function Coursedatatable() {
         <Table
           dataSource={data}
           columns={columns}
-          pagination={{ pageSize: 6 }}
+          pagination={{ pageSize: 7 }}
           scroll={{ x: "max-content" }}
           size="small"
           bordered={false}
