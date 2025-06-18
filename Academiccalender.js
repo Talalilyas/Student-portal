@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Calendar, Row, Col, Typography, Badge } from "antd";
-import dayjs from "dayjs";
+
 
 const { Title } = Typography;
 
@@ -50,7 +50,7 @@ export default function Academiccalender() {
     <div >
       <Row justify="center">
         <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-          <Card title={<Title level={4}>Academic Calendar</Title>} bordered={true}>
+          <Card title={<Title level={4}>Academic Calendar</Title>}   bordered={false}>
             <Calendar
               fullscreen
               dateCellRender={dateCellRender}

@@ -9,7 +9,7 @@ import {
   LikeOutlined,
   StarOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Typography, Divider, Space, Avatar, Card } from "antd";
+import { Layout, Menu, Typography, Divider, Space, Avatar} from "antd";
 
 import { useNavigate } from "react-router-dom";
 import image from "./images.jpg";

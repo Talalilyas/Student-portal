@@ -4,14 +4,14 @@ import {
   MenuUnfoldOutlined,
   AudioOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Typography, Row, Col, theme } from "antd";
+import { Button, Layout, Row, Col, theme } from "antd";
 import { useNavigate, Outlet } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 import Sidebar from "./Sidebar";
 import Search from "./Search";
-import SPInput from "./Components/SPInput";
+
 const { Header, Content } = Layout;
-const { Text } = Typography;
+
 
 export default function Studentdashboard() {
   const [collapsed, setCollapsed] = useState(false);
@@ -22,6 +22,7 @@ export default function Studentdashboard() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+   console.log(isLogin)
   const onSearch = (value) => {
     console.log("Search value:", value);
   };

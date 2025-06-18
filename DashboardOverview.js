@@ -28,7 +28,7 @@ export default function DashboardOverview() {
             <Text type="secondary" style={{ marginLeft: "5px" }}>
               Academic Calendar
             </Text>
-            <Divider />
+            <Divider size="medium" />
             <Calender />
           </Card>
         </Col>
@@ -51,17 +51,17 @@ export default function DashboardOverview() {
             <Text style={{ fontSize: "22px" }}>Announcements</Text>
             <Row gutter={16}>
               <Col span={24}>
-                <Card variant="borderless" style={{ height: "70px" }}>
+                <Card variant="borderless" style={{ height: "80px" }}>
                   Midterm exams start next week.
                 </Card>
               </Col>
               <Col span={24}>
-                <Card variant="borderless" style={{ height: "70px" }}>
+                <Card variant="borderless" style={{ height: "80px" }}>
                   New courses for Fall 2025.
                 </Card>
               </Col>
               <Col span={24}>
-                <Card variant="borderless" style={{ height: "70px" }}>
+                <Card variant="borderless" style={{ height: "80px" }}>
                   Graduation form deadline: June 25.
                 </Card>
               </Col>
