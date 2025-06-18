@@ -4,13 +4,15 @@ import Login from "./Login";
 import Studentlogin from "./Studentlogin";
 import Lecturerlogin from "./Lecturerlogin";
 import Studentdashboard from "./Studentdashboard";
-import Coursedatatable from "./Coursedatatable"; // Assuming this is your table page
-import useLocalStorageState from "use-local-storage-state";
+import Coursedatatable from "./Coursedatatable";
 import Coursecatalogue from "./Coursecatalogue";
 import Academiccalender from "./Academiccalender";
-import WelcomeDashboard from "./WelcomeDashboard";
 import Myprogress from "./Myprogress";
 import Resultcard from "./Resultcard";
+import DashboardOverview from "./DashboardOverview"; 
+
+import useLocalStorageState from "use-local-storage-state";
+
 function Pagerouting() {
   const [isLogin] = useLocalStorageState("isLogin", false);
 
@@ -22,20 +24,17 @@ function Pagerouting() {
 
       {isLogin ? (
         <Route path="/studentdashboard" element={<Studentdashboard />}>
-  <Route index element={<WelcomeDashboard />} />
-
+          <Route index element={<DashboardOverview />} /> 
           <Route path="mycourse" element={<Coursedatatable />} />
           <Route path="coursecatalogue" element={<Coursecatalogue />} />
           <Route path="academiccalendar" element={<Academiccalender />} />
-
-          <Route path ="myprogress" element ={< Myprogress/>} />
-          <Route path ="resultcard" element ={<Resultcard/>}/>
+          <Route path="myprogress" element={<Myprogress />} />
+          <Route path="resultcard" element={<Resultcard />} />
         </Route>
       ) : (
         <Route path="/studentdashboard/*" element={<Navigate to="/" />} />
       )}
 
-     
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
