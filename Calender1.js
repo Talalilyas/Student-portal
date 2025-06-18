@@ -1,7 +1,7 @@
 import { Calendar, Radio, Row, Select, Typography, theme } from 'antd';
 import { useState } from 'react';
 
-export default function Calender() {
+export default function Calender1() {
   const { token } = theme.useToken();
   const [calendarValue, setCalendarValue] = useState();
 
