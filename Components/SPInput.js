@@ -2,7 +2,7 @@ import React from "react";
 import { Input } from "antd";
 
 const SPInput = (props) => {
-  const { ui, test } = props;
+  const { ui} = props;
   return <Input {...ui} />;
 };
 
