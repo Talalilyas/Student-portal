@@ -1,6 +1,6 @@
 import { Row, Col, Card, Typography, Progress, Flex } from "antd";
 
-const {  Text } = Typography;
+const { Text } = Typography;
 
 export default function Myprogress() {
   const twoColors = {
@@ -17,18 +17,6 @@ export default function Myprogress() {
   return (
     <div style={{ padding: "16px" }}>
       <Row gutter={[16, 16]}>
-        <Col xs={24} md={12} lg={12}>
-          <Card title="Overall Progress" bordered>
-            <Progress percent={99.9} strokeColor={twoColors} />
-            <Progress
-              percent={50}
-              status="active"
-              strokeColor={{ from: "#108ee9", to: "#87d068" }}
-              style={{ marginTop: "16px" }}
-            />
-          </Card>
-        </Col>
-
         <Col xs={24} md={12} lg={12}>
           <Card title="Course Progress (Circle Type)">
             <Flex gap="large" wrap justify="center">
