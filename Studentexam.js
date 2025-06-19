@@ -1,11 +1,12 @@
-import React from "react";
-import useFetchQuotes from "./Hookfetchdata";
-import { Table, Row, Col, Typography } from "antd";
 
-const { Title } = Typography;
+import useFetch from "./Hookfetchdata";
+import {Row, Col, } from "antd";
+import { SPtable } from "./Components";
+
+
 
 export default function Studentexam() {
-  const { data, loading } = useFetchQuotes("http://localhost:8080/course");
+  const { data, loading } = useFetch("http://localhost:8080/course");
 
   if (loading) {
     return <p>Loading...</p>;
@@ -25,8 +26,8 @@ export default function Studentexam() {
   return (
     <Row style={{ padding: 1 }}>
       <Col xs={24} sm={22} md={20} lg={18} xl={24}>
-        <Table
-          dataSource={data}
+        <SPtable
+          data={data}
           columns={columns}
           pagination={{ pageSize: 4 }}
           scroll={{ x: "max-content" }}

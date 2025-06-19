@@ -21,7 +21,7 @@ const SPCalendar = ({
     borderRadius: token.borderRadiusLG,
     padding: 8,
     background: "#ffffff",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.05)", // lighter shadow
+    boxShadow: "0 1px 3px rgba(0,0,0,0.05)", 
     ...wrapperStyle, 
   };
 

@@ -4,7 +4,7 @@ import { UnorderedListOutlined } from "@ant-design/icons";
 import Calender from "./Calender1";
 import Studentexam from "./Studentexam";
 import Coursedatatable from "./Coursedatatable";
-import Coursecatalogue from "./Coursecatalogue";
+
 
 const { Text } = Typography;
 

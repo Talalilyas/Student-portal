@@ -8,7 +8,7 @@ import { Button, Layout, Row, Col, theme } from "antd";
 import { useNavigate, Outlet } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 import Sidebar from "./Sidebar";
-import Search from "./Search";
+import { SPsearch } from "./Components";
 
 const { Header, Content } = Layout;
 
@@ -58,7 +58,7 @@ export default function Studentdashboard() {
                   />
                 </Col>
                 <Col flex="auto">
-                  <Search onSearch={onSearch} suffix={suffix} />
+                  <SPsearch onSearch={onSearch} suffix={suffix} />
                 </Col>
               </Row>
             </Header>

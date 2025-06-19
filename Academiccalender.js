@@ -1,29 +1,23 @@
 import React from "react";
 import { Card, Calendar, Row, Col, Typography, Badge } from "antd";
 
-
 const { Title } = Typography;
 
 const getListData = (value) => {
   let listData = [];
 
-
   switch (value.date()) {
     case 5:
       listData = [
-        { type: 'success', content: 'Midterm Exams Start' },
-        { type: 'warning', content: 'Submit Assignments' },
+        { type: "success", content: "Midterm Exams Start" },
+        { type: "warning", content: "Submit Assignments" },
       ];
       break;
     case 12:
-      listData = [
-        { type: 'error', content: 'Project Presentation' },
-      ];
+      listData = [{ type: "error", content: "Project Presentation" }];
       break;
     case 25:
-      listData = [
-        { type: 'success', content: 'Final Exams Start' },
-      ];
+      listData = [{ type: "success", content: "Final Exams Start" }];
       break;
     default:
       listData = [];
@@ -31,7 +25,6 @@ const getListData = (value) => {
 
   return listData || [];
 };
-
 const dateCellRender = (value) => {
   const listData = getListData(value);
   return (
@@ -44,13 +37,15 @@ const dateCellRender = (value) => {
     </ul>
   );
 };
-
 export default function Academiccalender() {
   return (
-    <div >
+    <div>
       <Row justify="center">
         <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-          <Card title={<Title level={4}>Academic Calendar</Title>}   bordered={false}>
+          <Card
+            title={<Title level={4}>Academic Calendar</Title>}
+            bordered={false}
+          >
             <Calendar
               fullscreen
               dateCellRender={dateCellRender}

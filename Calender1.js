@@ -1,8 +1,6 @@
 import React from "react";
-import { Typography, Card, Row, Col } from "antd";
+import { Row, Col } from "antd";
 import { SPCalendar } from "./Components";
-
-const { Title } = Typography;
 
 export default function AcademicCalendar() {
   const handlePanelChange = (value, mode) => {
@@ -12,9 +10,7 @@ export default function AcademicCalendar() {
   return (
     <Row>
       <Col span={24}>
-       
-          <SPCalendar onPanelChange={handlePanelChange} fullscreen={false} />
-       
+        <SPCalendar onPanelChange={handlePanelChange} fullscreen={false} />
       </Col>
     </Row>
   );
