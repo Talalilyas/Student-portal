@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-const PersonalInfo = () => {
+const SPpersonalInfo = () => {
   return (
     <>
       <Form.Item
@@ -19,4 +19,4 @@ const PersonalInfo = () => {
     </>
   );
 };
-export default PersonalInfo;
+export default SPpersonalInfo;

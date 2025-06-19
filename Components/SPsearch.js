@@ -3,7 +3,7 @@ import React from "react";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-export default function Search({ onSearch }) {
+export default function SPsearch({ onSearch }) {
   return (
   
      <Input
@@ -12,7 +12,7 @@ export default function Search({ onSearch }) {
       suffix={<SearchOutlined style={{ color: "#aaa" }} />}
       style={{
         width: "100%",
-        maxWidth:900,
+        maxWidth:150,
         marginTop: "2px",
        
       }}

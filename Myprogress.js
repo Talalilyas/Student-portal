@@ -1,6 +1,6 @@
 import { Row, Col, Card, Typography, Progress, Flex } from "antd";
 
-const { Title, Text } = Typography;
+const {  Text } = Typography;
 
 export default function Myprogress() {
   const twoColors = {
