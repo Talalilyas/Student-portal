@@ -11,6 +11,7 @@ import Myprogress from "./Myprogress";
 import Resultcard from "./Resultcard";
 import DashboardOverview from "./DashboardOverview"; 
 import useLocalStorageState from "use-local-storage-state";
+import Studycard from "./Studycard";
 
 function Pagerouting() {
   const [isLogin] = useLocalStorageState("isLogin", false);
@@ -29,6 +30,7 @@ function Pagerouting() {
           <Route path="academiccalendar" element={<Academiccalender />} />
           <Route path="myprogress" element={<Myprogress />} />
           <Route path="resultcard" element={<Resultcard />} />
+          <Route path="studycard" element={<Studycard/>}/>
         </Route>
       ) : (
         <Route path="/studentdashboard/*" element={<Navigate to="/" />} />

@@ -91,7 +91,8 @@ export default function Sidebar({ handleSignOut }) {
         <Menu.Item
           key="study-card"
           icon={<UserOutlined />}
-          onClick={handleSignOut}
+        
+           onClick={() => navigate("studycard")}
           style={{ marginTop: "15px" }}
         >
           Study Card
