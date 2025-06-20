@@ -3,15 +3,15 @@ import { Row, Col, Divider, Typography, Card } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import Calender from "./Calender1";
 import Studentexam from "./Studentexam";
-import Coursedatatable from "./Coursedatatable";
 
+import CourseTable from "./CourseTable";
 
 const { Text } = Typography;
 
 export default function DashboardOverview() {
   return (
     <>
-      <Row >
+      <Row>
         <Col xs={24} lg={17} md={7}>
           <Card>
             <UnorderedListOutlined />
@@ -19,11 +19,11 @@ export default function DashboardOverview() {
               MY Courses
             </Text>
             <Divider />
-           <Coursedatatable/>
+            <CourseTable />
           </Card>
         </Col>
         <Col xs={24} lg={7} md={7}>
-          <Card style={{marginLeft:"8px"}}>
+          <Card style={{ marginLeft: "8px" }}>
             <UnorderedListOutlined />
             <Text type="secondary" style={{ marginLeft: "5px" }}>
               Academic Calendar
@@ -46,7 +46,7 @@ export default function DashboardOverview() {
           </Card>
         </Col>
         <Col xs={24} lg={7}>
-          <Card  style={{marginLeft:"8px"}}> 
+          <Card style={{ marginLeft: "8px" }}>
             <Divider size="large" />
             <Text style={{ fontSize: "22px" }}>Announcements</Text>
             <Row gutter={16}>
