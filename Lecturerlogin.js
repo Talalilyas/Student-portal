@@ -1,5 +1,5 @@
 import { Row, Col, Image, Typography } from "antd";
-import bgimage from "./university-background-image.jpg";
+import bgimage from "./Images/university-background-image.jpg";
 
 import { Form, Input, Button, Card } from "antd";
 

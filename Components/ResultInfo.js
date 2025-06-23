@@ -2,23 +2,18 @@ import React, { useState } from "react";
 import { Form, Select, Row, Col, Typography } from "antd";
 
 const { Text } = Typography;
-
 const ResultInfo = ({ form }) => {
   const [classNumber, setClassNumber] = useState(4);
   const [resultType, setResultType] = useState("");
   const [teacherOptions, setTeacherOptions] = useState([]);
-
   const classOptions = Array.from({ length: 13 }, (_, i) => ({
     label: `Class ${i + 4}`,
     value: i + 4,
   }));
-
   const handleClassChange = (value) => {
     setClassNumber(value);
-
     const newResultType = value <= 12 ? "Final Result" : "Semester Result";
     setResultType(newResultType);
-
     let options = [];
     if (value >= 4 && value <= 6) {
       options = [
@@ -54,8 +49,8 @@ const ResultInfo = ({ form }) => {
     form.setFieldsValue({
       resultType: newResultType,
       teacher: undefined,
-      grade:undefined,
-      cgpa:undefined,
+      grade: undefined,
+      cgpa: undefined,
     });
   };
 
@@ -70,8 +65,7 @@ const ResultInfo = ({ form }) => {
             placeholder="Select class"
             options={classOptions}
             value={classNumber}
-            onChange={handleClassChange}
-          />
+            onChange={handleClassChange}/>
         </Form.Item>
       </Col>
       {classNumber >= 4 && classNumber <= 12 && (
@@ -79,24 +73,22 @@ const ResultInfo = ({ form }) => {
           <Form.Item
             label="Grade"
             name="grade"
-            rules={[{ required: true, message: "Please select your grade!" }]}>
+            rules={[{ required: true, message: "Please select your grade!" }]} >
             <Select
               placeholder="Select grade"
               options={[
                 { value: "A+", label: "A+" },
                 { value: "B", label: "B" },
-                { value: "C", label: "C" },]}
-            />
+                { value: "C", label: "C" },
+              ]}/>
           </Form.Item>
-        </Col>
-      )}
+        </Col> )}
       {classNumber >= 13 && (
         <Col span={14}>
           <Form.Item
             label="CGPA"
             name="cgpa"
-            rules={[{ required: true, message: "Please select your CGPA!" }]}
-          >
+            rules={[{ required: true, message: "Please select your CGPA!" }]} >
             <Select
               placeholder="Select CGPA"
               options={[
@@ -106,9 +98,7 @@ const ResultInfo = ({ form }) => {
               ]}
             />
           </Form.Item>
-        </Col>
-      )}
-
+        </Col> )}
       <Col span={11}>
         <Form.Item label="Result Type" name="resultType">
           <Text type="secondary">
@@ -116,7 +106,6 @@ const ResultInfo = ({ form }) => {
           </Text>
         </Form.Item>
       </Col>
-
       {teacherOptions.length > 0 && (
         <Col span={13}>
           <Form.Item
@@ -126,10 +115,8 @@ const ResultInfo = ({ form }) => {
           >
             <Select placeholder="Select teacher" options={teacherOptions} />
           </Form.Item>
-        </Col>
-      )}
+        </Col>)}
     </Row>
   );
 };
-
 export default ResultInfo;

@@ -12,7 +12,7 @@ import {
 import { Layout, Menu, Typography, Divider, Space, Avatar} from "antd";
 
 import { useNavigate } from "react-router-dom";
-import image from "./images.jpg";
+import image from "./Images/images.jpg";
 import { useState } from "react";
 
 const { Sider } = Layout;
