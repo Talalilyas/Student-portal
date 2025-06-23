@@ -1,5 +1,5 @@
 import { Row, Col, Image, Typography, message } from "antd";
-import bgimage from "./university-background-image.jpg";
+import bgimage from "./Images/university-background-image.jpg";
 import useLocalStorageState from "use-local-storage-state";
 import { Form, Input, Button, Card } from "antd";
 import { useState } from "react";

@@ -1,9 +1,10 @@
 import React from "react";
-import { Row, Col, Divider, Typography, Card } from "antd";
+import { Row, Col, Divider, Typography, Card, Calendar } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
-import Calender from "./Calender1";
+
 import Studentexam from "./Studentexam";
 
+import AcademicCalendar from "./Components/SPcalender";
 import CourseTable from "./CourseTable";
 
 const { Text } = Typography;
@@ -29,7 +30,7 @@ export default function DashboardOverview() {
               Academic Calendar
             </Text>
             <Divider size="medium" />
-            <Calender />
+            <AcademicCalendar />
           </Card>
         </Col>
       </Row>
