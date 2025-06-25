@@ -1,64 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Row, Col, Image, Typography } from "antd";
-
 import { GooglePlusOutlined } from "@ant-design/icons";
 
-import bgImage from "./Images/university-background-image.jpg"; 
-import { useState } from "react";
+import bgImage from "./Images/university-background-image.jpg";
 import Lecturer from "./Lecturer";
+import SPimagebg from "./Components/SPimagebg";
+
+const { Title } = Typography;
+
 export default function Login() {
-  const { Title } = Typography;
   const [role, setRole] = useState("student");
-  console.log(role);
+
   const handleChange = (e) => {
     setRole(e.target.value);
   };
+
   return (
-    <Row style={{ minHeight: "100vh" }} justify="center">
-      <Col xs={24} sm={18} md={12} lg={16} style={{ background: "purple" }}>
-        <Image
-          width="100%"
-          height="98%"
-          src={bgImage}
-          preview={false}
-          style={{ marginTop: "5px" }}
-        />
+    <Row className="login-container" justify="center" align="middle">
+      <Col xs={24} sm={18} md={12} lg={16} className="login-image-col">
+        <SPimagebg />
       </Col>
-      <Col
-        xs={24}
-        sm={18}
-        md={12}
-        lg={8}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "3rem",
-          paddingTop: "170px",
-        }}
-      >
-        <Row justify="center" style={{ width: "100%" }}>
+
+      <Col xs={24} sm={18} md={12} lg={8} className="login-form-col">
+        <Row justify="center">
           <Col>
-            <Image
-              src={bgImage}
-              preview={false}
-              style={{ width: "150px", height: "auto" }}
-            />
+            <SPimagebg width="140px" />
           </Col>
         </Row>
-        <Title style={{ fontFamily: "cursive", textAlign: "center" }}>
-          Sgin in Uos
+
+        <Title
+          level={2}
+          className="login-title"
+          style={{ textAlign: "center", fontFamily: "cursive" }}
+        >
+          Sign in UoS
         </Title>
 
         <Lecturer />
-        <Row>
-          <Col style={{ paddingTop: "5px" }}>
-            <Button type="text" style={{ border: "1px solid", height: "60px" }}>
-              <GooglePlusOutlined
-                style={{ fontSize: "30px", color: "#08c" }}
-                theme="outlined"
-              />
-              Contiune with the google
+
+        <Row justify="center">
+          <Col>
+            <Button
+              type="default"
+              size="large"
+              icon={
+                <GooglePlusOutlined
+                  style={{ fontSize: "30px", color: "#08c" }}
+                />
+              }
+            >
+              Continue with Google
             </Button>
           </Col>
         </Row>

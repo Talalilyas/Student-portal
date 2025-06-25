@@ -1,4 +1,5 @@
-import React from "react";
+// components/Sidebar.js
+import React, { useState } from "react";
 import {
   ReadOutlined,
   AppstoreOutlined,
@@ -9,18 +10,15 @@ import {
   LikeOutlined,
   StarOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Typography, Divider, Space, Avatar} from "antd";
-
-import { useNavigate } from "react-router-dom";
-import image from "./Images/images.jpg";
-import { useState } from "react";
+import { Layout, Menu, Divider } from "antd";
+import SPHeader from "./Components/SPHeader";
+import SidebarMenuItem from "./Components/SidebarMenuItem";
 
 const { Sider } = Layout;
-const { Text } = Typography;
 
 export default function Sidebar({ handleSignOut }) {
-  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+
   return (
     <Sider
       width={280}
@@ -29,98 +27,54 @@ export default function Sidebar({ handleSignOut }) {
       breakpoint="md"
       onBreakpoint={(broken) => setCollapsed(broken)}
     >
-      <Space align="start" style={{ marginLeft: "8px", marginTop: "30px" }}>
-        <Avatar
-          shape="circle"
-          src={image}
-          style={{ width: "60px", height: "60px" }}
-        />
-        {!collapsed && (
-          <Space
-            direction="vertical"
-            size={0}
-            style={{ marginTop: "10px", marginLeft: "19px" }}
-          >
-            <Text strong>Student 1</Text>
-            <Space>
-              <Text>Status:</Text>
-              <Text style={{ color: "green" }}>Active</Text>
-            </Space>
-          </Space>
-        )}
-      </Space>
-
+      <SPHeader collapsed={collapsed} />
       <Divider size="medium" />
 
-      <Menu mode="inline" theme="light">
-        <Menu.Item
-          key="grade"
+      <Menu mode="inline" theme="light" selectedKeys={[]}>
+        <SidebarMenuItem
           icon={<ReadOutlined />}
-          onClick={() => navigate("coursecatalogue")}
-          style={{ marginTop: "15px" }}
-        >
-          Course Catalogue
-        </Menu.Item>
-        <Menu.Item
-          key="settings"
+          label="Course Catalogue"
+          path="coursecatalogue"
+        />
+        <SidebarMenuItem
           icon={<AppstoreOutlined />}
-          onClick={() => navigate("myprogress")}
-          style={{ marginTop: "15px" }}
-        >
-          My Progress
-        </Menu.Item>
-        <Menu.Item
-          key="calendar"
+          label="My Progress"
+          path="myprogress"
+        />
+        <SidebarMenuItem
           icon={<CalendarOutlined />}
-          onClick={() => navigate("academiccalendar")}
-          style={{ marginTop: "15px" }}
-        >
-          Academic Calendar
-        </Menu.Item>
-        <Menu.Item
-          key="result-form"
+          label="Academic Calendar"
+          path="academiccalendar"
+        />
+        <SidebarMenuItem
           icon={<ScheduleOutlined />}
-          onClick={() => navigate("resultcard")}
-          style={{ marginTop: "15px" }}
-        >
-          Results Card
-        </Menu.Item>
+          label="Results Card"
+          path="resultcard"
+        />
 
         <Divider size="medium" />
 
-        <Menu.Item
-          key="study-card"
+        <SidebarMenuItem
           icon={<UserOutlined />}
-        
-           onClick={() => navigate("studycard")}
-          style={{ marginTop: "15px" }}
-        >
-          Study Card
-        </Menu.Item>
-        <Menu.Item
-          key="recommendations"
+          label="Study Card"
+          path="studycard"
+        />
+        <SidebarMenuItem
           icon={<LikeOutlined />}
+          label="Recommendations"
           onClick={handleSignOut}
-          style={{ marginTop: "15px" }}
-        >
-          Recommendations
-        </Menu.Item>
-        <Menu.Item
-          key="rating"
+        />
+        <SidebarMenuItem
           icon={<StarOutlined />}
+          label="My Rating"
           onClick={handleSignOut}
-          style={{ marginTop: "15px" }}
-        >
-          My Rating
-        </Menu.Item>
-        <Menu.Item
-          key="signout"
+        />
+        <SidebarMenuItem
           icon={<LogoutOutlined />}
-          style={{ color: "red", marginTop: "15px" }}
+          label="Sign Out"
           onClick={handleSignOut}
-        >
-          Sign Out
-        </Menu.Item>
+          danger
+        />
       </Menu>
     </Sider>
   );
