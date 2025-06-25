@@ -64,7 +64,7 @@ export default function Studentdashboard() {
             </Header>
           </Col>
         </Row>
-        <Content style={{ padding: "16px", background: "#f5f5f5" }}>
+        <Content style={{ padding: "16px" }}>
           <Outlet />
         </Content>
       </Layout>

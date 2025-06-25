@@ -1,6 +1,6 @@
 // CourseTable.js
 import React from "react";
-import useFetch from "./FetchHOOk/Hookfetchdata";
+import useFetch from "./FetchHOOk/HOOkpostdata";
 import { Row, Col, Typography, Card } from "antd";
 import { SPtable } from "./Components";
 

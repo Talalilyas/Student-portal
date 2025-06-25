@@ -1,5 +1,5 @@
 
-import useFetch from "./FetchHOOk/Hookfetchdata";
+import useFetch from "./FetchHOOk/HOOkpostdata";
 import {Row, Col, } from "antd";
 import { SPtable } from "./Components";
 
