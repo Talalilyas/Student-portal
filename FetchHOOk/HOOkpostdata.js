@@ -11,12 +11,8 @@ const useFetch = (url, autoFetch = true) => {
 
     try {
       const response = await fetch(url, {
-        method: "Get", // default
-        headers: {
-          "Content-Type": "application/json",
+        method: "Get", 
         
-        },
-      
       });
 
       if (!response.ok) {
