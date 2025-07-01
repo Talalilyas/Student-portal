@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url, autoFetch = true) => {
+const useFetch = (url, method = "GET", autoFetch = true) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(autoFetch);
   const [error, setError] = useState(null);
 
-  const sendReq = async (options = {}) => {
+  const sendReq = async (body = null, ) => {
     setLoading(true);
     setError(null);
 
     try {
       const response = await fetch(url, {
-        method: "Get", // default
+        method,
         headers: {
           "Content-Type": "application/json",
-        
+         
         },
-      
+        body: body ? JSON.stringify(body) : null,
       });
 
       if (!response.ok) {
@@ -29,7 +29,7 @@ const useFetch = (url, autoFetch = true) => {
       return result;
     } catch (err) {
       setError(err.message);
-      console.error("Request error:", err.message);
+      console.error("Fetch Error:", err.message);
       return null;
     } finally {
       setLoading(false);
@@ -37,7 +37,7 @@ const useFetch = (url, autoFetch = true) => {
   };
 
   useEffect(() => {
-    if (autoFetch) {
+    if (autoFetch && method === "GET") {
       sendReq();
     }
   }, [url]);
