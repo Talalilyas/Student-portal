@@ -1,71 +1,63 @@
 import React from "react";
-import { Row, Col, Divider, Typography, Card, Calendar } from "antd";
+import { Row, Col, Typography, Card } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 
+import DashboardCardSection from "./Components/DashboardCardSection";
+import CourseTable from "./CourseTable";
+import AcademicCalendar from "./Components/SPcalender";
 import Studentexam from "./Studentexam";
 
-import AcademicCalendar from "./Components/SPcalender";
-import CourseTable from "./CourseTable";
-
 const { Text } = Typography;
+
+const announcements = [
+  "Midterm exams start next week.",
+  "New courses for Fall 2025.",
+  "Graduation form deadline: June 25.",
+];
 
 export default function DashboardOverview() {
   return (
     <>
-      <Row>
-        <Col xs={24} lg={17} md={7}>
-          <Card>
-            <UnorderedListOutlined />
-            <Text type="secondary" style={{ marginLeft: "5px" }}>
-              MY Courses
-            </Text>
-            <Divider />
+      <Row gutter={[16, 16]}>
+        <Col xs={24} lg={17}>
+          <DashboardCardSection
+            icon={<UnorderedListOutlined />}
+            title="My Courses"
+          >
             <CourseTable />
-          </Card>
+          </DashboardCardSection>
         </Col>
-        <Col xs={24} lg={7} md={7}>
-          <Card style={{ marginLeft: "8px" }}>
-            <UnorderedListOutlined />
-            <Text type="secondary" style={{ marginLeft: "5px" }}>
-              Academic Calendar
-            </Text>
-            <Divider size="medium" />
+        <Col xs={24} lg={7}>
+          <DashboardCardSection
+            icon={<UnorderedListOutlined />}
+            title="Academic Calendar"
+            style={{ marginLeft: 8 }}
+          >
             <AcademicCalendar />
-          </Card>
+          </DashboardCardSection>
         </Col>
       </Row>
 
-      <Row>
+      <Row gutter={[16, 16]}>
         <Col xs={24} lg={17}>
-          <Card>
-            <UnorderedListOutlined />
-            <Text type="secondary" style={{ marginLeft: "5px" }}>
-              Upcoming Exams
-            </Text>
-            <Divider />
+          <DashboardCardSection
+            icon={<UnorderedListOutlined />}
+            title="Upcoming Exams"
+          >
             <Studentexam />
-          </Card>
+          </DashboardCardSection>
         </Col>
         <Col xs={24} lg={7}>
-          <Card style={{ marginLeft: "8px" }}>
-            <Divider size="large" />
-            <Text style={{ fontSize: "22px" }}>Announcements</Text>
-            <Row gutter={16}>
-              <Col span={24}>
-                <Card variant="borderless" style={{ height: "80px" }}>
-                  Midterm exams start next week.
-                </Card>
-              </Col>
-              <Col span={24}>
-                <Card variant="borderless" style={{ height: "80px" }}>
-                  New courses for Fall 2025.
-                </Card>
-              </Col>
-              <Col span={24}>
-                <Card variant="borderless" style={{ height: "80px" }}>
-                  Graduation form deadline: June 25.
-                </Card>
-              </Col>
+          <Card style={{ marginLeft: 8 }}>
+            <Text style={{ fontSize: 22 }}>Announcements</Text>
+            <Row gutter={[8, 8]}>
+              {announcements.map((item, index) => (
+                <Col span={24} key={index}>
+                  <Card variant="borderless" style={{ height: 80 }}>
+                    {item}
+                  </Card>
+                </Col>
+              ))}
             </Row>
           </Card>
         </Col>

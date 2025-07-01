@@ -21,10 +21,7 @@ const SidebarMenuItem = ({ label, icon, path, onClick, danger = false }) => {
           key={path || label}
           icon={icon}
           onClick={handleClick}
-          style={{
-            color: danger ? "red" : undefined,
-            backgroundColor: isSelected ? "#f0f0f0" : "transparent",
-          }}
+          style={{}}
         >
           {label}
         </Menu.Item>
