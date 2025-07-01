@@ -1,13 +1,12 @@
-import { Row, Col, Typography, message } from "antd";
+import { Row, Col, message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 
-import { Form, Input, Card, Button } from "antd";
-import SPInput from "./Components/SPinput";
+import { Form, Card } from "antd";
 
 import SPFormInput from "./Components/SPFrominput";
-import SpTitle from "./Components/SpTitle";
+
 import SPButton from "./Components/SPButton";
 import SPlogoheader from "./Components/SPlogoheader";
 import SPTitle from "./Components/SpTitle";
@@ -20,7 +19,9 @@ export default function StudentLogin() {
   const [accessToken, setAccessToken] = useLocalStorageState("accessToken", "");
 
   const navigate = useNavigate();
-
+  console.log(isLogin);
+  console.log(users);
+   console.log(accessToken);
   const handleSubmit = async () => {
     const loginData = {
       username,
@@ -39,8 +40,7 @@ export default function StudentLogin() {
       }
       const data = await response.json();
       message.success("Login successful!");
-      console.log(data);
-      console.log(accessToken);
+      setAccessToken(data.token);
       setUser({ username });
       setIsLogin(true);
       navigate("/studentdashboard");

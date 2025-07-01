@@ -12,7 +12,6 @@ import { SPsearch } from "./Components";
 
 const { Header, Content } = Layout;
 
-
 export default function Studentdashboard() {
   const [collapsed, setCollapsed] = useState(false);
   const [isLogin, setIsLogin] = useLocalStorageState("isLogin", false);
@@ -22,7 +21,7 @@ export default function Studentdashboard() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-   console.log(isLogin)
+  console.log(isLogin);
   const onSearch = (value) => {
     console.log("Search value:", value);
   };
