@@ -5,7 +5,7 @@ const useFetch = (url, method = "GET", autoFetch = true) => {
   const [loading, setLoading] = useState(autoFetch);
   const [error, setError] = useState(null);
 
-  const sendReq = async (body = null, ) => {
+  const sendReq = async (body = null) => {
     setLoading(true);
     setError(null);
 
@@ -14,7 +14,6 @@ const useFetch = (url, method = "GET", autoFetch = true) => {
         method,
         headers: {
           "Content-Type": "application/json",
-         
         },
         body: body ? JSON.stringify(body) : null,
       });
@@ -37,9 +36,11 @@ const useFetch = (url, method = "GET", autoFetch = true) => {
   };
 
   useEffect(() => {
-    if (autoFetch && method === "GET") {
+    if ( method === "GET") {
       sendReq();
     }
+    
+     
   }, [url]);
 
   return { data, loading, error, sendReq };

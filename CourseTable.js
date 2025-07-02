@@ -1,21 +1,25 @@
 // CourseTable.js
-import React from "react";
+import React, { useEffect } from "react";
 import useFetch from "./FetchHOOk/HOOkpostdata";
 import { Row, Col, Typography, Card } from "antd";
 import { SPtable } from "./Components";
-
 const { Title } = Typography;
 
 export default function CourseTable({
   apiUrl = "http://localhost:8080/score",
-  title = null,
+  title = "Your Courses",
   pagination = { pageSize: 5 },
   useCard = false,
 }) {
-  const { data, loading } = useFetch(apiUrl);
+  const { data, loading, error, sendReq } = useFetch(apiUrl, "GET");
+  useEffect(() => {
+    sendReq();
+  }, [apiUrl]);
 
   if (loading) return <p>Loading...</p>;
-  if (!data || data.length === 0) return <p>No data available.</p>;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+  if (!data || !Array.isArray(data) || data.length === 0)
+    return <p>No data available.</p>;
 
   const columns = [
     { title: "Course ID", dataIndex: "course_id", key: "course_id" },
