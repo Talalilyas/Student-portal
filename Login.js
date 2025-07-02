@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Button, Row, Col, Image, Typography } from "antd";
 import { GooglePlusOutlined } from "@ant-design/icons";
-
-import bgImage from "./Images/university-background-image.jpg";
 import Lecturer from "./Lecturer";
 import SPimagebg from "./Components/SPimagebg";
 

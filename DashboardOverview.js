@@ -7,11 +7,11 @@ import CourseTable from "./CourseTable";
 import AcademicCalendar from "./Components/SPcalender";
 import Studentexam from "./Studentexam";
 
-const { Text } = Typography;
+const { Text} = Typography;
 
 const announcements = [
   "Midterm exams start next week.",
-  "New courses for Fall 2025.",
+  "New course for Fall 2025.",
   "Graduation form deadline: June 25.",
 ];
 
@@ -22,8 +22,7 @@ export default function DashboardOverview() {
         <Col xs={24} lg={17}>
           <DashboardCardSection
             icon={<UnorderedListOutlined />}
-            title="My Courses"
-          >
+            title="My Courses">
             <CourseTable />
           </DashboardCardSection>
         </Col>
@@ -31,35 +30,33 @@ export default function DashboardOverview() {
           <DashboardCardSection
             icon={<UnorderedListOutlined />}
             title="Academic Calendar"
-            style={{ marginLeft: 8 }}
-          >
+            style={{ marginLeft: 4 }}>
             <AcademicCalendar />
           </DashboardCardSection>
         </Col>
       </Row>
-
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={17}>
           <DashboardCardSection
             icon={<UnorderedListOutlined />}
-            title="Upcoming Exams"
-          >
+            title="Upcoming Exams" >
             <Studentexam />
           </DashboardCardSection>
         </Col>
         <Col xs={24} lg={7}>
-          <Card style={{ marginLeft: 8 }}>
-            <Text style={{ fontSize: 22 }}>Announcements</Text>
+          <DashboardCardSection
+            icon={<UnorderedListOutlined />}
+            title="Announcements">
             <Row gutter={[8, 8]}>
               {announcements.map((item, index) => (
                 <Col span={24} key={index}>
-                  <Card variant="borderless" style={{ height: 80 }}>
-                    {item}
+                  <Card bordered={false} style={{ backgroundColor: "#f9f9f9" }}>
+                    <Text>{item}</Text>
                   </Card>
                 </Col>
               ))}
             </Row>
-          </Card>
+          </DashboardCardSection>
         </Col>
       </Row>
     </>

@@ -2,14 +2,12 @@ import { Row, Col, message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
-
 import { Form, Card } from "antd";
-
 import SPFormInput from "./Components/SPFrominput";
-
 import SPButton from "./Components/SPButton";
 import SPlogoheader from "./Components/SPlogoheader";
 import SPTitle from "./Components/SpTitle";
+import useFetch from "./FetchHOOk/Hookfetchdata";
 
 export default function StudentLogin() {
   const [username, setUsername] = useState("");
@@ -17,50 +15,40 @@ export default function StudentLogin() {
   const [isLogin, setIsLogin] = useLocalStorageState("isLogin", false);
   const [users, setUser] = useLocalStorageState("user", { username: "" });
   const [accessToken, setAccessToken] = useLocalStorageState("accessToken", "");
-
   const navigate = useNavigate();
+
   console.log(isLogin);
   console.log(users);
-   console.log(accessToken);
+  console.log(accessToken);
+  const {loading,error,sendReq: loginRequest,} = useFetch("https://dummyjson.com/auth/login", "POST", false);
+
   const handleSubmit = async () => {
-    const loginData = {
-      username,
-      password,
-      expiresInMins: 30,
-    };
-    try {
-      const response = await fetch("https://dummyjson.com/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(loginData),
-      });
-      if (!response.ok) {
-        const errorDetails = await response.json();
-        throw new Error(errorDetails.message || "Invalid credentials");
-      }
-      const data = await response.json();
+    const loginData = { username,  password,  expiresInMins: 30, };
+    const data = await loginRequest(loginData);
+     
+    if (data) {
       message.success("Login successful!");
       setAccessToken(data.token);
       setUser({ username });
       setIsLogin(true);
       navigate("/studentdashboard");
-    } catch (err) {
-      message.error(`Login failed: ${err.message}`);
+    } else {
+      message.error(`Login failed: ${error || "Unknown error"}`);
     }
   };
 
   return (
     <>
       <SPlogoheader />
-      <SPTitle text={"Student perfoming portal login"} />
+      <SPTitle text={"Student Performing Portal Login"} />
       <Row justify="center">
         <Col span={6}>
-          <Card
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-            }}
-          >
-            <Form name="loginForm" layout="vertical" onFinish={handleSubmit}>
+          <Card bodyStyle={{ backgroundColor: "#002766" }}>
+            <Form
+              name="loginForm"
+              layout="vertical"
+              onFinish={handleSubmit}
+              disabled={loading}>
               <SPFormInput
                 label="Student ID"
                 name="username"
@@ -68,7 +56,7 @@ export default function StudentLogin() {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter Your ID"
                 rules={[
-                  { required: true, message: "Please enter your username!" },
+               { required: true, message: "Please enter your username!" },
                 ]}
               />
               <SPFormInput
@@ -82,7 +70,7 @@ export default function StudentLogin() {
                   { required: true, message: "Please enter your password!" },
                 ]}
               />
-              <SPButton />
+              <SPButton loading={loading} />
             </Form>
           </Card>
         </Col>
