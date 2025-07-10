@@ -7,7 +7,8 @@ import SPFormInput from "./Components/SPFrominput";
 import SPButton from "./Components/SPButton";
 import SPlogoheader from "./Components/SPlogoheader";
 import SPTitle from "./Components/SpTitle";
-import useFetch from "./FetchHOOk/Hookfetchdata";
+import Hookfetchdata from "./FetchHOOk/HOOkpostdata";
+import useFetch from "./FetchHOOk/HOOkpostdata";
 
 export default function StudentLogin() {
   const [username, setUsername] = useState("");
@@ -20,12 +21,16 @@ export default function StudentLogin() {
   console.log(isLogin);
   console.log(users);
   console.log(accessToken);
-  const {loading,error,sendReq: loginRequest,} = useFetch("https://dummyjson.com/auth/login", "POST", false);
+  const {
+    loading,
+    error,
+    sendReq: loginRequest,
+  } = ("https://dummyjson.com/auth/login", "POST", false);
 
   const handleSubmit = async () => {
-    const loginData = { username,  password,  expiresInMins: 30, };
+    const loginData = { username, password, expiresInMins: 30 };
     const data = await loginRequest(loginData);
-     
+
     if (data) {
       message.success("Login successful!");
       setAccessToken(data.token);
@@ -48,7 +53,8 @@ export default function StudentLogin() {
               name="loginForm"
               layout="vertical"
               onFinish={handleSubmit}
-              disabled={loading}>
+              disabled={loading}
+            >
               <SPFormInput
                 label="Student ID"
                 name="username"
@@ -56,7 +62,7 @@ export default function StudentLogin() {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter Your ID"
                 rules={[
-               { required: true, message: "Please enter your username!" },
+                  { required: true, message: "Please enter your username!" },
                 ]}
               />
               <SPFormInput
