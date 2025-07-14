@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import Hookfetchdata from "./FetchHOOk/Hookfetchdata";
+import React from "react";
 import { Row, Col, Typography, Card } from "antd";
 import { SPtable } from "./Components";
-import { useFetcher } from "react-router-dom";
-import usefetch from "./FetchHOOk/HOOkpostdata"
+import useFetch from "./FetchHOOk/Hookfetchdata";
+
 const { Title } = Typography;
 
 export default function CourseTable({
@@ -12,11 +11,7 @@ export default function CourseTable({
   pagination = { pageSize: 5 },
   useCard = false,
 }) {
-  const { data, loading, error, sendReq } = usefetch(apiUrl,"GET");
-
-  useEffect(() => {
-    sendReq();
-  }, [apiUrl]);
+  const { data, loading, error } = useFetch(apiUrl);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;

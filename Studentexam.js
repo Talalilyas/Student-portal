@@ -1,31 +1,24 @@
-
-import useFetch from "./FetchHOOk/HOOkpostdata";
-import {Row, Col, } from "antd";
+import React from "react";
+import { Row, Col } from "antd";
 import { SPtable } from "./Components";
-
-
+import useFetch from "./FetchHOOk/Hookfetchdata";
 
 export default function Studentexam() {
-  const { data, loading } = useFetch("http://localhost:8080/course");
+  const { data, loading, error } = useFetch("http://localhost:8080/course");
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!data || data.length === 0) {
-    return <p>No users available.</p>;
-  }
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+  if (!data || data.length === 0) return <p>No exam data available.</p>;
 
   const columns = [
-    { title: "Course title", dataIndex: "course_subject", key: "course_id" },
-    { title: "Exam type", dataIndex: "exam_type", key: "course_title" },
-    { title: "Date/Time", dataIndex: "exam_date_time", key: "awarded" },
-   
+    { title: "Course Title", dataIndex: "course_subject", key: "course_subject" },
+    { title: "Exam Type", dataIndex: "exam_type", key: "exam_type" },
+    { title: "Date/Time", dataIndex: "exam_date_time", key: "exam_date_time" },
   ];
 
   return (
-    <Row style={{ padding: 1 }}>
-      <Col xs={24} sm={22} md={20} lg={18} xl={24}>
+    <Row style={{ padding: 10 }}>
+      <Col span={24}>
         <SPtable
           data={data}
           columns={columns}
@@ -37,5 +30,6 @@ export default function Studentexam() {
         />
       </Col>
     </Row>
+   
   );
 }

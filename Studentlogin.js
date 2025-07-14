@@ -5,35 +5,38 @@ import useLocalStorageState from "use-local-storage-state";
 import { Form, Card } from "antd";
 import SPFormInput from "./Components/SPFrominput";
 import SPButton from "./Components/SPButton";
-import SPlogoheader from "./Components/SPlogoheader";
 import SPTitle from "./Components/SpTitle";
-import Hookfetchdata from "./FetchHOOk/HOOkpostdata";
-import useFetch from "./FetchHOOk/HOOkpostdata";
+import SPlogoheader from "./Components/SPlogoheader";
+import useFetch from "./FetchHOOk/Hookfetchdata";
 
 export default function StudentLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useLocalStorageState("isLogin", false);
-  const [users, setUser] = useLocalStorageState("user", { username: "" });
+  const [user, setUser] = useLocalStorageState("user", { username: "" });
   const [accessToken, setAccessToken] = useLocalStorageState("accessToken", "");
   const navigate = useNavigate();
 
-  console.log(isLogin);
-  console.log(users);
-  console.log(accessToken);
-  const {
-    loading,
-    error,
-    sendReq: loginRequest,
-  } = ("https://dummyjson.com/auth/login", "POST", false);
+  const { postData, postLoading, error } = useFetch(
+    "https://dummyjson.com/auth/login",
+    false
+  );
+
+  console.log("Hook returns:", { postData, postLoading, error });
 
   const handleSubmit = async () => {
-    const loginData = { username, password, expiresInMins: 30 };
-    const data = await loginRequest(loginData);
+    if (!postData) {
+      console.error("postData function is not available");
+      message.error("Login function not available");
+      return;
+    }
 
-    if (data) {
+    const loginData = { username, password, expiresInMins: 30 };
+    const response = await postData(loginData);
+
+    if (response) {
       message.success("Login successful!");
-      setAccessToken(data.token);
+      setAccessToken(response.token);
       setUser({ username });
       setIsLogin(true);
       navigate("/studentdashboard");
@@ -45,7 +48,7 @@ export default function StudentLogin() {
   return (
     <>
       <SPlogoheader />
-      <SPTitle text={"Student Performing Portal Login"} />
+      <SPTitle text="Student Performing Portal Login" />
       <Row justify="center">
         <Col span={6}>
           <Card bodyStyle={{ backgroundColor: "#002766" }}>
@@ -53,7 +56,7 @@ export default function StudentLogin() {
               name="loginForm"
               layout="vertical"
               onFinish={handleSubmit}
-              disabled={loading}
+              disabled={postLoading}
             >
               <SPFormInput
                 label="Student ID"
@@ -76,7 +79,7 @@ export default function StudentLogin() {
                   { required: true, message: "Please enter your password!" },
                 ]}
               />
-              <SPButton loading={loading} />
+              <SPButton loading={postLoading} />
             </Form>
           </Card>
         </Col>

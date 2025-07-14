@@ -1,69 +1,85 @@
-import { Row, Col, Image, Typography } from "antd";
+import { Row, Col, Image, Typography, message } from "antd";
 import bgimage from "./Images/university-background-image.jpg";
-
+import useLocalStorageState from "use-local-storage-state";
 import { Form, Input, Button, Card } from "antd";
+import { useState, usenavigate } from "react";
+import SPlogoheader from "./Components/SPlogoheader";
+import SPTitle from "./Components/SpTitle";
+import SPFormInput from "./Components/SPFrominput";
+import usefetch from "./FetchHOOk/Hookfetchdata";
+import SPButton from "./Components/SPButton";
 
+import { useNavigate } from "react-router-dom";
 export default function Lecturerlogin() {
-  const { Title } = Typography;
+
+
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  const [isLogins, setIsLogins] = useLocalStorageState("isLogins", false);
+  const [user, setUser] = useLocalStorageState("user", { username: "" });
+  const [accessToken, setAccessToken] = useLocalStorageState("accessToken", "");
+
+  const navigate = useNavigate();
+  const { postData, postLoading, error } = usefetch(
+    "https://dummyjson.com/auth/login"
+  );
+
+  const handleSubmit = async () => {
+    const loginData = { username, password, expiresInMins: 30 };
+    const response = await postData(loginData);
+    if (response) {
+      message.success("Login successful!");
+      setAccessToken(response.token);
+      setUser({ username });
+      setIsLogins(true);
+      console.log(accessToken);
+      console.log(isLogins)
+      console.log(user)
+    navigate("/teacherdashboard"); 
+    } else {
+      message.error(`Login failed: ${error || "Unknown error"}`);
+    }
+  };
 
   return (
     <>
-      <Row justify="center" style={{ width: "100%" }}>
-        <Col>
-          <Image
-            src={bgimage}
-            preview={false}
-            style={{ width: "150px", height: "auto" }}
-          />
-        </Col>
-      </Row>
-
+      <SPlogoheader />
+      <SPTitle text="Teacher Performing Portal Login" />
       <Row justify="center">
-        {" "}
-        <Col>
-          <Title style={{ fontFamily: "cursive", textAlign: "center" }}>
-            Teacher perfoming portal login
-          </Title>
-        </Col>{" "}
-      </Row>
-
-      <Row justify="center" align="middle">
-        <Card
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            color: "#fff",
-            width: "100%",
-            maxWidth: 350,
-          }}
-        >
-          <Form name="loginForm" layout="vertical" style={{ width: "100%" }}>
-            <Form.Item
-              label={<span style={{ color: "#fff" }}>Teacher UserID</span>}
-              name="username"
-              rules={[
-                { required: true, message: "Please enter your username!" },
-              ]}
+        <Col span={6}>
+          <Card bodyStyle={{ backgroundColor: "#002766" }}>
+            <Form
+              name="loginForm"
+              layout="vertical"
+              onFinish={handleSubmit}
+              disabled={postLoading}
             >
-              <Input placeholder="Enter Your  user id  " />
-            </Form.Item>
-
-            <Form.Item
-              label={<span style={{ color: "#fff" }}>Password</span>}
-              name="password"
-              rules={[
-                { required: true, message: "Please enter your password!" },
-              ]}
-            >
-              <Input.Password placeholder="Enter your password" />
-            </Form.Item>
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit" block>
-                Login
-              </Button>
-            </Form.Item>
-          </Form>
-        </Card>
+              <SPFormInput
+                label="Student ID"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter Your ID"
+                rules={[
+                  { required: true, message: "Please enter your username!" },
+                ]}
+              />
+              <SPFormInput
+                label="Password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                rules={[
+                  { required: true, message: "Please enter your password!" },
+                ]}
+              />
+              <SPButton loading={postLoading} />
+            </Form>
+          </Card>
+        </Col>
       </Row>
     </>
   );
