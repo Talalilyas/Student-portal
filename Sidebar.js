@@ -1,4 +1,3 @@
-// components/Sidebar.js
 import React, { useState } from "react";
 import {
   ReadOutlined,
@@ -11,13 +10,47 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Divider } from "antd";
+import { useNavigate } from "react-router-dom";
+import useFetch from "./FetchHOOk/Hookfetchdata";
 import SPHeader from "./Components/SPHeader";
-import SidebarMenuItem from "./Components/SidebarMenuItem";
 
 const { Sider } = Layout;
 
+// Map labels to Ant Design icons
+const iconMap = {
+  "Course Catalogue": <ReadOutlined />,
+  "My Progress": <AppstoreOutlined />,
+  "Academic Calendar": <CalendarOutlined />,
+  "Results Card": <ScheduleOutlined />,
+  "Study Card": <UserOutlined />,
+  Recommendations: <LikeOutlined />,
+  "My Rating": <StarOutlined />,
+  "Sign Out": <LogoutOutlined />,
+};
+
 export default function Sidebar({ handleSignOut }) {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  const { loading, data, error } = useFetch("http://localhost:8080/Label");
+const { data: profileData, loading: profileLoading } = useFetch("http://localhost:8080/userprofile");
+const profile = Array.isArray(profileData) ? profileData[0] : profileData;
+
+
+  if (loading) return <p>Loading sidebar...</p>;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+  if (!Array.isArray(data) || data.length === 0)
+    return <p>No menu items available.</p>;
+
+
+  const mainItems = [
+    "Course Catalogue",
+    "My Progress",
+    "Academic Calendar",
+    "Results Card",
+  ];
+  const extraItems = ["Study Card", "Recommendations", "My Rating"];
+  const actionItems = ["Sign Out"];
 
   return (
     <Sider
@@ -27,54 +60,51 @@ export default function Sidebar({ handleSignOut }) {
       breakpoint="md"
       onBreakpoint={(broken) => setCollapsed(broken)}
     >
-      <SPHeader collapsed={collapsed} />
-      <Divider size="medium" />
+     <SPHeader collapsed={collapsed} profile={profile} loading={profileLoading} />
 
-      <Menu mode="inline" theme="light" selectedKeys={[]}>
-        <SidebarMenuItem
-          icon={<ReadOutlined />}
-          label="Course Catalogue"
-          path="coursecatalogue"
-        />
-        <SidebarMenuItem
-          icon={<AppstoreOutlined />}
-          label="My Progress"
-          path="myprogress"
-        />
-        <SidebarMenuItem
-          icon={<CalendarOutlined />}
-          label="Academic Calendar"
-          path="academiccalendar"
-        />
-        <SidebarMenuItem
-          icon={<ScheduleOutlined />}
-          label="Results Card"
-          path="resultcard"
-        />
+      <Divider style={{ margin: "16px 0" }} />
 
-        <Divider size="medium" />
+      <Menu mode="inline" theme="light" style={{ padding: "0 16px" }}>
+        {data
+          .filter((item) => mainItems.includes(item.label))
+          .map(({ id, label, path }) => (
+            <Menu.Item
+              key={id}
+              icon={iconMap[label] || <ReadOutlined />}
+              onClick={() => navigate(`/studentdashboard/${path}`)}
+            >
+              {label}
+            </Menu.Item>
+          ))}
 
-        <SidebarMenuItem
-          icon={<UserOutlined />}
-          label="Study Card"
-          path="studycard"
-        />
-        <SidebarMenuItem
-          icon={<LikeOutlined />}
-          label="Recommendations"
-          onClick={handleSignOut}
-        />
-        <SidebarMenuItem
-          icon={<StarOutlined />}
-          label="My Rating"
-          onClick={handleSignOut}
-        />
-        <SidebarMenuItem
-          icon={<LogoutOutlined />}
-          label="Sign Out"
-          onClick={handleSignOut}
-          danger
-        />
+        <Divider style={{ margin: "16px 0" }} />
+
+        {data
+          .filter((item) => extraItems.includes(item.label))
+          .map(({ id, label, path }) => (
+            <Menu.Item
+              key={id}
+              icon={iconMap[label] || <ReadOutlined />}
+              onClick={() => navigate(`/studentdashboard/${path}`)}
+            >
+              {label}
+            </Menu.Item>
+          ))}
+
+        <Divider style={{ margin: "16px 0" }} />
+
+        {data
+          .filter((item) => actionItems.includes(item.label))
+          .map(({ id, label }) => (
+            <Menu.Item
+              key={id}
+              icon={iconMap[label] || <ReadOutlined />}
+              danger
+              onClick={handleSignOut}
+            >
+              {label}
+            </Menu.Item>
+          ))}
       </Menu>
     </Sider>
   );

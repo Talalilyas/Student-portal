@@ -1,8 +1,11 @@
-import { Row, Col, Card, Typography, Progress, Flex } from "antd";
+import { Row, Col, Card, Typography, Progress, Flex, Spin, Alert } from "antd";
+import useFetch from "./FetchHOOk/Hookfetchdata";
 
 const { Text } = Typography;
 
 export default function Myprogress() {
+  const { loading, data, error } = useFetch("http://localhost:8080/myprogress");
+
   const twoColors = {
     "0%": "#108ee9",
     "100%": "#87d068",
@@ -14,28 +17,36 @@ export default function Myprogress() {
     "100%": "#ffccc7",
   };
 
+
+  const renderProgress = (type) =>
+    data
+      ?.filter((item) => item.type === type)
+      .map((item, index) => (
+        <div key={index} style={{ textAlign: "center" }}>
+          <Progress
+            type={item.type}
+            percent={item.percent}
+            strokeC olor={item.percent >= 95 ? conicColors : twoColors}
+          />
+          <Text>{item.name}</Text>
+        </div>
+      ));
+
+  if (loading) {
+    return <Spin tip="Loading Progress..." style={{ display: "block", marginTop: 100 }} />;
+  }
+
+  if (error) {
+    return <Alert message="Error loading data" description={error.message} type="error" />;
+  }
+
   return (
     <div style={{ padding: "16px" }}>
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12} lg={12}>
           <Card title="Course Progress (Circle Type)">
             <Flex gap="large" wrap justify="center">
-              <div style={{ textAlign: "center" }}>
-                <Progress type="circle" percent={90} strokeColor={twoColors} />
-                <Text>Course A</Text>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <Progress type="circle" percent={100} strokeColor={twoColors} />
-                <Text>Course B</Text>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <Progress
-                  type="circle"
-                  percent={93}
-                  strokeColor={conicColors}
-                />
-                <Text>Course C</Text>
-              </div>
+              {renderProgress("circle")}
             </Flex>
           </Card>
         </Col>
@@ -45,30 +56,7 @@ export default function Myprogress() {
         <Col xs={24}>
           <Card title="Course Progress (Dashboard Type)">
             <Flex gap="large" wrap justify="center">
-              <div style={{ textAlign: "center" }}>
-                <Progress
-                  type="dashboard"
-                  percent={90}
-                  strokeColor={twoColors}
-                />
-                <Text>Module A</Text>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <Progress
-                  type="dashboard"
-                  percent={100}
-                  strokeColor={twoColors}
-                />
-                <Text>Module B</Text>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <Progress
-                  type="dashboard"
-                  percent={93}
-                  strokeColor={conicColors}
-                />
-                <Text>Module C</Text>
-              </div>
+              {renderProgress("circle")}
             </Flex>
           </Card>
         </Col>
