@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Studentlogin from "./Studentlogin";
@@ -11,13 +11,10 @@ import DashboardOverview from "./DashboardOverview";
 import useLocalStorageState from "use-local-storage-state";
 import Studycard from "./Studycard";
 import CourseTable from "./CourseTable";
-import Teacherdashborad from "./Teacherdashborad";
-import Teacherdashboardoverveiw from "./Teacherdashboardoverveiw";
-
 function Pagerouting() {
   const [isLogin] = useLocalStorageState("isLogin", false);
   const [isLogins] = useLocalStorageState("isLogins", false);
-
+  console.log(isLogins)
   return (
     <Routes>
       <Route path="/" element={<Login />} />
@@ -47,13 +44,13 @@ function Pagerouting() {
         <Route path="/studentdashboard/*" element={<Navigate to="/" />} />
       )}
 
-      {isLogins ? (
+      {/* {isLogins ? (
         <Route path="/teacherdashboard" element={<Teacherdashborad />}>
           <Route index element={<Teacherdashboardoverveiw />} />
         </Route>
       ) : (
         <Route path="/teacherdashboard/*" element={<Navigate to="/" />} />
-      )}
+      )} */}
     </Routes>
   );
 }
