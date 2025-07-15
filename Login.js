@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Row, Col, Image, Typography } from "antd";
+
+import { Button, Row, Col,  Typography } from "antd";
 import { GooglePlusOutlined } from "@ant-design/icons";
 import Lecturer from "./Lecturer";
 import SPimagebg from "./Components/SPimagebg";
@@ -7,11 +7,9 @@ import SPimagebg from "./Components/SPimagebg";
 const { Title } = Typography;
 
 export default function Login() {
-  const [role, setRole] = useState("student");
 
-  const handleChange = (e) => {
-    setRole(e.target.value);
-  };
+
+
 
   return (
     <Row className="login-container" justify="center" align="middle">
