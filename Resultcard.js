@@ -27,7 +27,7 @@ export default function Resultcard() {
           <SPpersonalInfo />
           <ResultInfo form={form} />
           <Form.Item style={{ textAlign: "center", marginTop: "20px" }}>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" block   >
               Submit Result
             </Button>
           </Form.Item>

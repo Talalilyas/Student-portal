@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Typography, Table } from "antd";
+import { Row, Col, } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 
 import DashboardCardSection from "./Components/DashboardCardSection";
@@ -9,7 +9,7 @@ import Studentexam from "./Studentexam";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 import { SPtable } from "./Components";
 
-const { Text } = Typography;
+
 
 export default function DashboardOverview() {
   const {

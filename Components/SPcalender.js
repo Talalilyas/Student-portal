@@ -5,6 +5,7 @@ const SPCalendar = ({
   fullscreen = false,
   bordered = true,
   onPanelChange,
+  dateCellRender,
   wrapperStyle = {},
 }) => {
   const { token } = theme.useToken();
@@ -12,7 +13,7 @@ const SPCalendar = ({
 
   const handlePanelChange = (value, mode) => {
     setCalendarValue(value);
-    onPanelChange?.(value, mode); 
+    onPanelChange?.(value, mode);
   };
 
   const defaultStyle = {
@@ -21,8 +22,8 @@ const SPCalendar = ({
     borderRadius: token.borderRadiusLG,
     padding: 8,
     background: "#ffffff",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.05)", 
-    ...wrapperStyle, 
+    boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+    ...wrapperStyle,
   };
 
   return (
@@ -31,6 +32,7 @@ const SPCalendar = ({
         fullscreen={fullscreen}
         value={calendarValue}
         onPanelChange={handlePanelChange}
+        dateCellRender={dateCellRender}
         headerRender={({ value, type, onChange, onTypeChange }) => {
           const current = value.clone();
           const localeData = value.localeData();
@@ -41,7 +43,7 @@ const SPCalendar = ({
           }));
 
           const year = value.year();
-          const yearOptions = Array.from({ length: 20 }, (_, i) => ({
+          const yearOptions = Array.from({ length: 120 }, (_, i) => ({
             label: `${year - 10 + i}`,
             value: year - 10 + i,
           }));
@@ -55,7 +57,7 @@ const SPCalendar = ({
                 style={{ display: "flex", gap: 8 }}
               >
                 <Radio.Button value="month">Month</Radio.Button>
-                <Radio.Button value="year">Year</Radio.Button>
+                <Radio.Button value="yearOptions" >Year</Radio.Button>
               </Radio.Group>
 
               <Select

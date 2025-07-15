@@ -5,14 +5,12 @@ import defaultImage from "../Images/images.jpg";
 const { Text } = Typography;
 
 const SidebarHeader = ({ collapsed, profile, loading }) => {
-console.log(profile,"-------profile---")
-
-
+  console.log(profile, "-------profile---");
   return (
     <Space align="start" style={{ marginLeft: "8px", marginTop: "30px" }}>
       <Avatar
         shape="circle"
-        src={ defaultImage}
+        src={defaultImage}
         style={{ width: "60px", height: "60px" }}
       />
       {!collapsed && (
@@ -28,10 +26,11 @@ console.log(profile,"-------profile---")
               <Text strong>{profile.name || "Unknown Student"}</Text>
               <Space>
                 <Text>Status:</Text>
-                <Text style={{ color: "green" }}>{profile?.status || "N/A"}</Text>
+                <Text style={{ color: "green" }}>
+                  {profile?.status || "N/A"}
+                </Text>
               </Space>
-            </>
-          )}
+            </>)}
         </Space>
       )}
     </Space>

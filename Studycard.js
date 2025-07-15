@@ -1,49 +1,37 @@
 import React from "react";
-import { Row, Col, Typography, Button, } from "antd";
+import { Row, Col, Typography, Button, Spin } from "antd";
+import useFetch from "./FetchHOOk/Hookfetchdata";
 
-const { Title, } = Typography;
-const subjects = [
-  {
-    title: "Geography",
-    color: "#fbeaea",
-  },
-  {
-    title: "History",
-    color: "#fff9db",
-  },
-  {
-    title: "Biology",
-    chapters: 25,
-    topics: 40,
-    color: "#e8f7e4",
-  },
-  {
-    title: "Music",
-    color: "#f0e9ff",
-  },
-  {
-    title: "Music",
-    color: "#f0e9ff",
-  },
-];
+const { Title } = Typography;
 
 export default function Studycard() {
+  const { loading, data, error } = useFetch("http://localhost:8080/Studycard");
+
+  if (loading) return <Spin tip="Loading cards..." />;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+  if (!Array.isArray(data) || data.length === 0)
+    return <p>No cards available.</p>;
+
+
+
   return (
     <div>
-      <Row gutter={[2, 9]} justify="start">
-        {subjects.map((subject, index) => (
-          <Col span={24} key={index}>
+      <Row gutter={[16, 16]} justify="start">
+        {data.map(item => (
+          <Col span={24} key={`${item.id}-${item.label}-${item.color}`}>
             <div
               style={{
-                backgroundColor: subject.color,
+             backgroundColor: item.color,
                 borderRadius: "8px",
                 padding: "19px",
                 display: "flex",
                 justifyContent: "space-between",
-              }}>
+                alignItems: "center",
+              }}
+            >
               <div>
                 <Title level={5} style={{ margin: 0 }}>
-                  {subject.title}
+                  {item.label}
                 </Title>
               </div>
               <Button type="primary" shape="round">
