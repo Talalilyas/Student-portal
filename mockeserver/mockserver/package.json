@@ -1,0 +1,16 @@
+{
+    "name": "s",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "http-mockserver": "^2.7.17",
+        "mocha": "^11.1.0",
+        "mock-http-server": "^1.4.5"
+    }
+}
