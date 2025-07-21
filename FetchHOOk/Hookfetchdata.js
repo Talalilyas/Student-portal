@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url, autoFetch = true) => {
+const useFetch = (url) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(autoFetch);
+  const [loading, setLoading] = useState(true);
   const [postLoading, setPostLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -20,8 +20,7 @@ const useFetch = (url, autoFetch = true) => {
       if (!response.ok) throw new Error(`Error: ${response.status}`);
       const result = await response.json();
 
-      if (method === "GET") setData(result);
-      if (method === "POST" && autoFetch) await handleRequest("GET");
+      setData(result); 
 
       return result;
     } catch (err) {
@@ -33,7 +32,7 @@ const useFetch = (url, autoFetch = true) => {
   };
 
   useEffect(() => {
-    if (autoFetch) handleRequest("GET");
+    handleRequest("GET");
   }, [url]);
 
   return {
