@@ -6,7 +6,7 @@ const { Title } = Typography;
 
 export default function Studycard() {
   
-  const { loading, data, error, fetchData } = useFetch("http://localhost:8080/Studycard");
+  const { loading, data, error, fetchData } = useFetch("http://localhost:8080/Studycard", );
 
 
   
