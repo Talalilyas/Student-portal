@@ -19,7 +19,7 @@ export default function StudentLogin() {
 
   const { postData, postLoading, error } = useFetch(
     "https://dummyjson.com/auth/login",
-    false
+    
   );
 
   console.log("Hook returns:", { postData, postLoading, error });
@@ -35,7 +35,7 @@ export default function StudentLogin() {
     const response = await postData(loginData);
 
     if (response) {
-      message.success("Login successful!");
+     
       setAccessToken(response.token);
       setUser({ username });
       setIsLogin(true);
