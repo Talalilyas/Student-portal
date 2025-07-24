@@ -5,18 +5,16 @@ import useFetch from "./FetchHOOk/Hookfetchdata";
 const { Title } = Typography;
 
 export default function Studycard() {
-  
-  const { loading, data, error, fetchData } = useFetch("http://localhost:8080/Studycard", );
+  const { loading, data, error, fetchData } = useFetch(
+    "http://localhost:8080/Studycard"
+  );
 
-
-  
   const handleLoadData = () => {
     fetchData();
   };
 
   if (loading) return <Spin tip="Loading cards..." />;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-  
 
   if (!data) {
     return (
@@ -42,15 +40,22 @@ export default function Studycard() {
 
   return (
     <div>
-      <div style={{ marginBottom: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Title level={2} style={{ margin: 0 }}>Study Cards</Title>
-        <Button onClick={handleLoadData} loading={loading}>
-          Refresh
-        </Button>
-      </div>
+      <div
+        style={{
+          marginBottom: "16px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Title level={2} style={{ margin: 0 }}>
+          Study Cards
+        </Title>
       
+      </div>
+
       <Row gutter={[16, 16]} justify="start">
-        {data.map(item => (
+        {data.map((item) => (
           <Col span={24} key={item.id}>
             <div
               style={{
