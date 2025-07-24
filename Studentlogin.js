@@ -17,12 +17,11 @@ export default function StudentLogin() {
   const [accessToken, setAccessToken] = useLocalStorageState("accessToken", "");
   const navigate = useNavigate();
 
+  
   const { postData, postLoading, error } = useFetch(
     "https://dummyjson.com/auth/login",
     
   );
-
-  console.log("Hook returns:", { postData, postLoading, error });
 
   const handleSubmit = async () => {
     if (!postData) {
@@ -30,10 +29,8 @@ export default function StudentLogin() {
       message.error("Login function not available");
       return;
     }
-
     const loginData = { username, password, expiresInMins: 30 };
     const response = await postData(loginData);
-
     if (response) {
      
       setAccessToken(response.token);

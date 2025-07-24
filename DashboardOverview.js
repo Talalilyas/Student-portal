@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, } from "antd";
+import { Row, Col } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 
 import DashboardCardSection from "./Components/DashboardCardSection";
@@ -9,31 +9,21 @@ import Studentexam from "./Studentexam";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 import { SPtable } from "./Components";
 
-
-
 export default function DashboardOverview() {
   const {
     data: announcements,
     loading,
     error,
   } = useFetch("http://localhost:8080/SPAnoucments");
-console.log("Announcements data:", announcements);
-
+  console.log("Announcements data:", announcements);
 
   const columns = [
-    {
-      title: "ID",
-      dataIndex: "key",
-      key: "key",
-      width: 60,
-    },
     {
       title: "Announcement",
       dataIndex: "announcement_text",
       key: "announcement_text",
     },
   ];
-
 
   const formattedData = announcements?.map((item, index) => ({
     ...item,
@@ -72,7 +62,7 @@ console.log("Announcements data:", announcements);
           </DashboardCardSection>
         </Col>
 
-        <Col xs={24} lg={7} hi >
+        <Col xs={24} lg={7} hi>
           <DashboardCardSection
             icon={<UnorderedListOutlined />}
             title="Announcements"
@@ -83,12 +73,12 @@ console.log("Announcements data:", announcements);
               <p style={{ color: "red" }}>Error: {error}</p>
             ) : (
               <SPtable
-                  data={formattedData}
-              columns={columns}
-              pagination={{ pageSize: 5 }}
-              size="small"
-              bordered
-              scroll={{ y: 180 }}
+                data={formattedData}
+                columns={columns}
+                pagination={{ pageSize: 5 }}
+                size="small"
+                bordered
+                scroll={{ y: 180 }}
               />
             )}
           </DashboardCardSection>

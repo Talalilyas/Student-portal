@@ -11,6 +11,7 @@ const useFetch = (url) => {
     setError(null);
 
     try {
+      console.log("-----method---", method, "-------url-----", url, "req----body", body);
       const response = await fetch(url, {
         method,
         headers: body ? { "Content-Type": "application/json" } : undefined,
