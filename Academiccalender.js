@@ -11,16 +11,10 @@ export default function Academiccalender() {
   const dateCellRender = (value) => {
     if (!Array.isArray(events)) return null;
 
-    
-
-
-   console.log(value,"12232131")
     const currentDate = value.format("YYYY-MM-DD");
-
     const listData = events.filter((event) => event.date === currentDate);
-
     return (
-      <ul className="events" style={{ paddingLeft: 0 }}>
+      <ul className="events">
         {listData.map((item, index) => (
           <li key={index} style={{ listStyle: "none" }}>
             <Badge status={item.type} text={item.content} />

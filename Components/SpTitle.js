@@ -3,14 +3,17 @@ import { Typography, Row, Col } from "antd";
 
 const { Title } = Typography;
 
-const SPTitle = ({ text }) => (
-  <Row justify="center">
-    <Col>
-      <Title style={{ fontFamily: "cursive" }}>
-        {text}
-      </Title>
-    </Col>
-  </Row>
-);
-
+const SPTitle = (props) => {
+  const { item, text } = props;
+  return (
+    <Row justify="center">
+      <Col>
+        <Title style={{ fontFamily: "cursive" }}>{text}</Title>
+      </Col>
+      <Col>
+        <Title style={{ fontFamily: "fantasy" }}>{item}</Title>
+      </Col>
+    </Row>
+  );
+};
 export default SPTitle;
