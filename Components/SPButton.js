@@ -1,14 +1,16 @@
 import React from "react";
 import { Form, Button } from "antd";
-import SPInput from "./SPinput";
 
-const SPButton = ({
- 
-}) => {
+
+const SPButton = (props) =>{
+  
+  const {text,name,shape,type} = props;
   return (
     <Form.Item>
-      <Button type="primary" htmlType="submit" block>
-        Login
+      <Button  htmlType="submit" block shape={shape} type={type} >
+       {text}
+       {name}
+       
       </Button>
     </Form.Item>
   );

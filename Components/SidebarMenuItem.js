@@ -1,13 +1,9 @@
-// components/SidebarMenuItem.js
 import React from "react";
 import { Menu, Row, Col } from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const SidebarMenuItem = ({ label, icon, path, onClick, danger = false }) => {
+const SidebarMenuItem = ({ label, icon, path, onClick }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const isSelected = path && location.pathname.includes(path);
 
   const handleClick = () => {
     if (onClick) onClick();
@@ -17,12 +13,7 @@ const SidebarMenuItem = ({ label, icon, path, onClick, danger = false }) => {
   return (
     <Row justify="space-around ">
       <Col span={18}>
-        <Menu.Item
-          key={path || label}
-          icon={icon}
-          onClick={handleClick}
-          style={{}}
-        >
+        <Menu.Item key={path } icon={icon} onClick={handleClick}>
           {label}
         </Menu.Item>
       </Col>
