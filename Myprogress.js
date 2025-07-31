@@ -1,5 +1,3 @@
-
-
 import { Row, Col, Card, Typography, Progress, Flex, Spin, Alert } from "antd";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 
@@ -7,28 +5,23 @@ const { Text } = Typography;
 
 export default function Myprogress() {
   const { loading, data, error } = useFetch("http://localhost:8080/myprogress");
-  
+
   const twoColors = {
     "0%": "#108ee9",
     "100%": "#87d068",
   };
-  
+
   const conicColors = {
     "0%": "#87d068",
     "50%": "#ffe58f",
     "100%": "#ffccc7",
   };
 
-  const renderProgress = (type) => {
-    // Add null check here
-    if (!data || !Array.isArray(data)) {
-      return <Text>No progress data available</Text>;
-    }
-    
+  const Progresss = () => {
     return data.map((item, index) => (
-      <div key={index} style={{ textAlign: "center" }}>
+      <div>
         <Progress
-          type={item.type || type} // Use item.type if available, fallback to parameter
+          type={item.type}
           percent={item.percent}
           strokeColor={item.percent >= 95 ? conicColors : twoColors}
         />
@@ -48,15 +41,10 @@ export default function Myprogress() {
 
   if (error) {
     return (
-      <Alert
-        message="Error loading data"
-        description={error}
-        type="error"
-      />
+      <Alert message="Error loading data" description={error} type="error" />
     );
   }
 
-  // Add additional check before rendering the main content
   if (!data) {
     return (
       <Alert
@@ -68,12 +56,12 @@ export default function Myprogress() {
   }
 
   return (
-    <div style={{ padding: "16px" }}>
+    <>
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12} lg={12}>
           <Card title="Course Progress (Circle Type)">
             <Flex gap="large" wrap justify="center">
-              {renderProgress("circle")}
+              {Progresss("circle")}
             </Flex>
           </Card>
         </Col>
@@ -82,11 +70,11 @@ export default function Myprogress() {
         <Col xs={24}>
           <Card title="Course Progress (Dashboard Type)">
             <Flex gap="large" wrap justify="center">
-              {renderProgress("dashboard")} {/* Changed to dashboard type */}
+              {Progresss("dashboard")}
             </Flex>
           </Card>
         </Col>
       </Row>
-    </div>
+    </>
   );
 }

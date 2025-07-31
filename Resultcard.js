@@ -14,7 +14,7 @@ export default function Resultcard() {
       justify="center"
       align="middle"
       style={{ minHeight: "100vh", padding: "20px", backgroundColor: "white" }} >
-      <Col xs={24} sm={20} md={16} lg={12} xl={10}>
+      <Col  xs={24} sm={20} md={16} lg={12} xl={10}>
         <Title level={3} style={{ textAlign: "center" }}>
           Student Result Cards
         </Title>

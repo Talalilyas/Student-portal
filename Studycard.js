@@ -1,41 +1,19 @@
 import React from "react";
-import { Row, Col, Typography, Button, Spin } from "antd";
+import { Row, Col, Spin} from "antd";
 import useFetch from "./FetchHOOk/Hookfetchdata";
+import SPTitle from "./Components/SpTitle";
+import SPButton from "./Components/SPButton";
 
-const { Title } = Typography;
 
-export default function Studycard() {
-  const { loading, data, error, fetchData } = useFetch(
+ export default function Studycard() {
+  const { loading, data, error} = useFetch(
     "http://localhost:8080/Studycard"
   );
-
-  const handleLoadData = () => {
-    fetchData();
-  };
-
-  if (loading) return <Spin tip="Loading cards..." />;
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-
-  if (!data) {
-    return (
-      <div style={{ textAlign: "center", padding: "20px" }}>
-        <Title level={3}>Study Cards</Title>
-        <Button type="primary" onClick={handleLoadData}>
-          Load Study Cards
-        </Button>
-      </div>
-    );
+  if (loading) {
+    return <Spin tip="Loading cards..." size="large" />;
   }
-
-  if (!Array.isArray(data) || data.length === 0) {
-    return (
-      <div style={{ textAlign: "center", padding: "20px" }}>
-        <p>No cards available.</p>
-        <Button type="primary" onClick={handleLoadData}>
-          Retry Loading
-        </Button>
-      </div>
-    );
+  if (error) {
+    console.log("erorror")
   }
 
   return (
@@ -46,36 +24,28 @@ export default function Studycard() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-        }}
-      >
-        <Title level={2} style={{ margin: 0 }}>
-          Study Cards
-        </Title>
-      
+        }}>
+        <SPTitle level={2} style={{ margin: 0 }} text="Study Card" />
       </div>
-
-      <Row gutter={[16, 16]} justify="start">
+      <Row gutter={[16, 16]}>
         {data.map((item) => (
-          <Col span={24} key={item.id}>
+          <Col xs={24} sm={12} md={8} lg={6} key={item.id}>
             <div
               style={{
-                backgroundColor: item.color,
+                backgroundColor: item.color || "#1890ff",
                 borderRadius: "8px",
-                padding: "19px",
+                padding: "16px",
+                height: "100%",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "space-between",
-                alignItems: "center",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-              }}
-            >
-              <div>
-                <Title level={5} style={{ margin: 0, color: "#fff" }}>
-                  {item.label}
-                </Title>
-              </div>
-              <Button type="primary" shape="round">
+              }} >
+              <SPTitle   item= {item.label}>
+                {item.label}
+              </SPTitle>
+              <SPButton type={"primary"} Shape={"round"}  name= {"Explore"}>
                 Explore
-              </Button>
+              </SPButton>
             </div>
           </Col>
         ))}
