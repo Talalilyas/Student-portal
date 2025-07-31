@@ -10,9 +10,10 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Divider } from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 import SPHeader from "./Components/SPHeader";
+import SidebarMenuItem from "./Components/SidebarMenuItem";
 
 const { Sider } = Layout;
 
@@ -22,16 +23,14 @@ const iconMap = {
   "Academic Calendar": <CalendarOutlined />,
   "Results Card": <ScheduleOutlined />,
   "Study Card": <UserOutlined />,
-  Recommendations: <LikeOutlined />,
+ "Recommendations": <LikeOutlined />,
   "My Rating": <StarOutlined />,
   "Sign Out": <LogoutOutlined />,
 };
 
 export default function Sidebar({ handleSignOut }) {
   const [collapsed, setCollapsed] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
-
   const { loading, data, error } = useFetch("http://localhost:8080/Label");
   const { data: profileData, loading: profileLoading } = useFetch(
     "http://localhost:8080/userprofile"
@@ -40,9 +39,6 @@ export default function Sidebar({ handleSignOut }) {
 
   if (loading) return <p>Loading sidebar...</p>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-  if (!Array.isArray(data) || data.length === 0)
-    return <p>No menu items available.</p>;
-
   const mainItems = [
     "Course Catalogue",
     "My Progress",
@@ -53,7 +49,6 @@ export default function Sidebar({ handleSignOut }) {
   const actionItems = ["Sign Out"];
 
   const currentPath = location.pathname.split("/").pop()?.toLowerCase();
-
   const selectedKey =
     data.find((item) => item.path?.toLowerCase() === currentPath)?.id + "";
 
@@ -75,32 +70,28 @@ export default function Sidebar({ handleSignOut }) {
         mode="inline"
         theme="light"
         style={{ padding: "0 16px" }}
-        selectedKeys={[selectedKey]}
-      >
+        selectedKeys={[selectedKey]}>
         {data
           .filter((item) => mainItems.includes(item.label))
           .map(({ id, label, path }) => (
-            <Menu.Item
-              key={id.toString()}
+            <SidebarMenuItem
+              key={id}
+              label={label}
               icon={iconMap[label] || <ReadOutlined />}
-              onClick={() => navigate(`/studentdashboard/${path}`)}
-            >
-              {label}
-            </Menu.Item>
+              path={`/studentdashboard/${path}`}
+            />
           ))}
 
         <Divider style={{ margin: "16px 0" }} />
-
         {data
           .filter((item) => extraItems.includes(item.label))
           .map(({ id, label, path }) => (
-            <Menu.Item
-              key={id.toString()}
+            <SidebarMenuItem
+              key={id}
+              label={label}
               icon={iconMap[label] || <ReadOutlined />}
-              onClick={() => navigate(`/studentdashboard/${path}`)}
-            >
-              {label}
-            </Menu.Item>
+              path={`/studentdashboard/${path}`}
+            />
           ))}
 
         <Divider style={{ margin: "16px 0" }} />
@@ -108,14 +99,12 @@ export default function Sidebar({ handleSignOut }) {
         {data
           .filter((item) => actionItems.includes(item.label))
           .map(({ id, label }) => (
-            <Menu.Item
-              key={id.toString()}
+            <SidebarMenuItem
+              key={id}
+              label={label}
               icon={iconMap[label] || <ReadOutlined />}
-              danger
               onClick={handleSignOut}
-            >
-              {label}
-            </Menu.Item>
+            />
           ))}
       </Menu>
     </Sider>
