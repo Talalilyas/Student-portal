@@ -3,14 +3,8 @@ import { Button, Row, Col,  Typography } from "antd";
 import { GooglePlusOutlined } from "@ant-design/icons";
 import Lecturer from "./Lecturer";
 import SPimagebg from "./Components/SPimagebg";
-
 const { Title } = Typography;
-
 export default function Login() {
-
-
-
-
   return (
     <Row className="login-container" justify="center" align="middle">
       <Col xs={24} sm={18} md={12} lg={16} className="login-image-col">
