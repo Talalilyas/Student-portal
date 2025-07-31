@@ -7,7 +7,7 @@ import SPFormInput from "./Components/SPFrominput";
 import SPButton from "./Components/SPButton";
 import SPTitle from "./Components/SpTitle";
 import SPlogoheader from "./Components/SPlogoheader";
-import useFetch from "./FetchHOOk/Hookfetchdata";
+import useFetch from "./FetchHOOk/Hookfetchdata"; 
 
 export default function StudentLogin() {
   const [username, setUsername] = useState("");
@@ -17,28 +17,26 @@ export default function StudentLogin() {
   const [accessToken, setAccessToken] = useLocalStorageState("accessToken", "");
   const navigate = useNavigate();
 
+  const { postData, loading, error } = useFetch("https://dummyjson.com/auth/login");
+const handleSubmit = async () => {
+ 
+  const loginData = { username, password };
   
-  const { postData, postLoading, error } = useFetch(
-    "https://dummyjson.com/auth/login",
-    
-  );
+  const response = await postData(loginData); 
 
-  const handleSubmit = async () => {
-    if (!postData) {
-      console.error("postData function is not available");
-      message.error("Login function not available");
-      return;
-    }
-    const loginData = { username, password, expiresInMins: 30 };
-    const response = await postData(loginData);
-    if (response) {
-     
-      setAccessToken(response.token);
+
+    if (response && response.accessToken) { 
+      setAccessToken(response.accessToken); 
       setUser({ username });
       setIsLogin(true);
+      console.log(accessToken);
+      console.log(user)
+      console.log(isLogin)
+      message.success("Login successful!"); 
       navigate("/studentdashboard");
     } else {
-      message.error(`Login failed: ${error || "Unknown error"}`);
+      message.error(`Login failed: ${error || "Invalid credentials or token not found"}`);
+      console.error("Login failed. API response:", response, "Error from hook:", error);
     }
   };
 
@@ -53,7 +51,7 @@ export default function StudentLogin() {
               name="loginForm"
               layout="vertical"
               onFinish={handleSubmit}
-              disabled={postLoading}
+              disabled={loading}
             >
               <SPFormInput
                 label="Student ID"
@@ -61,9 +59,7 @@ export default function StudentLogin() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter Your ID"
-                rules={[
-                  { required: true, message: "Please enter your username!" },
-                ]}
+                rules={[{ required: true, message: "Please enter your username!" }]}
               />
               <SPFormInput
                 label="Password"
@@ -72,11 +68,9 @@ export default function StudentLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                rules={[
-                  { required: true, message: "Please enter your password!" },
-                ]}
+                rules={[{ required: true, message: "Please enter your password!" }]}
               />
-              <SPButton loading={postLoading} />
+              <SPButton loading={loading} text={"Login"} />
             </Form>
           </Card>
         </Col>

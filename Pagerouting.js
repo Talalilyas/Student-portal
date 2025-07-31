@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Studentlogin from "./Studentlogin";
@@ -14,7 +13,7 @@ import CourseTable from "./CourseTable";
 function Pagerouting() {
   const [isLogin] = useLocalStorageState("isLogin", false);
   const [isLogins] = useLocalStorageState("isLogins", false);
-  console.log(isLogins)
+  console.log(isLogins);
   return (
     <Routes>
       <Route path="/" element={<Login />} />
@@ -30,7 +29,7 @@ function Pagerouting() {
             element={
               <CourseTable
                 title="Course Catalogue"
-                pagination={{ pageSize: 9 }}
+                pagination={{ pageSize: 10 }}
                 useCard={true}
               />
             }

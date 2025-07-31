@@ -5,7 +5,7 @@ import defaultImage from "../Images/images.jpg";
 const { Text } = Typography;
 
 const SidebarHeader = ({ collapsed, profile, loading }) => {
-  console.log(profile, "-------profile---");
+
   return (
     <Space align="start" style={{ marginLeft: "8px", marginTop: "30px" }}>
       <Avatar

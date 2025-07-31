@@ -1,8 +1,8 @@
 import React from "react";
-import { Input, Table } from "antd";
+import { Table } from "antd";
 
 const SPtable = (props) => {
-  const { ui, test, data, columns, pagination = { pageSize: 9 } } = props;
+  const {  data, columns,pagination } = props;
   return (
     <Table
       dataSource={data}

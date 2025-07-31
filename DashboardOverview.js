@@ -1,13 +1,11 @@
 import React from "react";
 import { Row, Col } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
-
 import DashboardCardSection from "./Components/DashboardCardSection";
 import CourseTable from "./CourseTable";
-import AcademicCalendar from "./Components/SPcalender";
 import Studentexam from "./Studentexam";
 import useFetch from "./FetchHOOk/Hookfetchdata";
-import { SPtable } from "./Components";
+import { SPCalendar, SPtable } from "./Components";
 
 export default function DashboardOverview() {
   const {
@@ -15,20 +13,19 @@ export default function DashboardOverview() {
     loading,
     error,
   } = useFetch("http://localhost:8080/SPAnoucments");
-  console.log("Announcements data:", announcements);
 
   const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+    },
     {
       title: "Announcement",
       dataIndex: "announcement_text",
       key: "announcement_text",
     },
   ];
-
-  const formattedData = announcements?.map((item, index) => ({
-    ...item,
-    key: index + 1,
-  }));
 
   return (
     <>
@@ -47,7 +44,7 @@ export default function DashboardOverview() {
             icon={<UnorderedListOutlined />}
             title="Academic Calendar"
           >
-            <AcademicCalendar />
+            <SPCalendar/>
           </DashboardCardSection>
         </Col>
       </Row>
@@ -62,7 +59,7 @@ export default function DashboardOverview() {
           </DashboardCardSection>
         </Col>
 
-        <Col xs={24} lg={7} hi>
+        <Col xs={24} lg={7}>
           <DashboardCardSection
             icon={<UnorderedListOutlined />}
             title="Announcements"
@@ -73,12 +70,12 @@ export default function DashboardOverview() {
               <p style={{ color: "red" }}>Error: {error}</p>
             ) : (
               <SPtable
-                data={formattedData}
+                data={announcements}
                 columns={columns}
-                pagination={{ pageSize: 5 }}
+                scroll={{ x: "max-content" }}
+                pagination={{ pageSize: 6 }}
                 size="small"
                 bordered
-                scroll={{ y: 180 }}
               />
             )}
           </DashboardCardSection>

@@ -2,7 +2,7 @@ import React from "react";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-export default function SPsZZAZAZZZearch({ onSearch }) {
+export default function SPsearch({ onSearch }) {
   return (
     <Input
       placeholder="What are you looking for?"

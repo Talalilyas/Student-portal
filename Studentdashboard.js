@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  AudioOutlined,
-} from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, Row, Col, theme } from "antd";
 import { useNavigate, Outlet } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
@@ -13,21 +9,16 @@ import { SPsearch } from "./Components";
 const { Header, Content } = Layout;
 
 export default function Studentdashboard() {
-  const [collapsed, setCollapsed] = useState(false);
   const [isLogin, setIsLogin] = useLocalStorageState("isLogin", false);
   const navigate = useNavigate();
-
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
-
+  
   console.log(isLogin);
   const onSearch = (value) => {
     console.log("Search value:", value);
   };
-
-  const suffix = <AudioOutlined style={{ fontSize: 16, color: "#1677ff" }} />;
-
   const handleSignOut = () => {
     setIsLogin(false);
     navigate("/");
@@ -42,22 +33,17 @@ export default function Studentdashboard() {
             <Header
               style={{
                 background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
+              }}>
               <Row>
                 <Col>
                   <Button
                     type="text"
-                    icon={
-                      collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
-                    }
-                    onClick={() => setCollapsed(!collapsed)}
+                    icon={<MenuUnfoldOutlined />}
                     style={{ fontSize: "18px" }}
                   />
                 </Col>
                 <Col flex="auto">
-                  <SPsearch onSearch={onSearch} suffix={suffix} />
+                  <SPsearch onSearch={onSearch} />
                 </Col>
               </Row>
             </Header>

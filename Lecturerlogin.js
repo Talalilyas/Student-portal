@@ -21,19 +21,23 @@ export default function Lecturerlogin() {
   const [accessToken, setAccessToken] = useLocalStorageState("accessToken", "");
 
   const navigate = useNavigate();
-  const { postData, postLoading, error } = usefetch(
+  const { request, postLoading, error } = usefetch(
     "https://dummyjson.com/auth/login"
   );
 
+
   const handleSubmit = async () => {
     const loginData = { username, password, expiresInMins: 30 };
-    const response = await postData(loginData);
-    if (response) {
+    const response = await request(loginData);
+    
+       console.log(response, "------api data")
+    if (response.token) {
       message.success("Login successful!");
       setAccessToken(response.token);
       setUser({ username });
       setIsLogins(true);
       console.log(accessToken);
+         console.log("Access Token from state:----hellloooo-----", accessToken); // This might still be outdated due to closure
       console.log(isLogins)
       console.log(user)
     navigate("/teacherdashboard"); 

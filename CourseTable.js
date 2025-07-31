@@ -8,7 +8,7 @@ const { Title } = Typography;
 export default function CourseTable({
   apiUrl = "http://localhost:8080/score",
   title = "Your Courses",
-  pagination = { pageSize: 5 },
+  pagination = { pageSize: 6 },
   useCard = false,
 }) {
   const { data, loading, error } = useFetch(apiUrl);
@@ -37,13 +37,11 @@ export default function CourseTable({
           <Card
             title={
               title ? (
-                <Title level={5} style={{ marginBottom: 0 }}>
+                <Title level={5}>
                   {title}
                 </Title>
               ) : null
             }
-            bordered={false}
-            style={{ borderRadius: "10px", boxShadow: "0 2px 8px #f0f1f2" }}
           >
             {tableContent}
           </Card>
