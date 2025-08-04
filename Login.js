@@ -25,9 +25,7 @@ export default function Login() {
         >
           Sign in UoS
         </Title>
-
         <Lecturer />
-
         <Row justify="center">
           <Col>
             <Button

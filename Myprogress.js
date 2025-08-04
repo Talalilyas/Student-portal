@@ -1,10 +1,12 @@
 import { Row, Col, Card, Typography, Progress, Flex, Spin, Alert } from "antd";
 import useFetch from "./FetchHOOk/Hookfetchdata";
+import { useEffect, useMemo, useState } from "react";
 
 const { Text } = Typography;
 
 export default function Myprogress() {
   const { loading, data, error } = useFetch("http://localhost:8080/myprogress");
+  const [loader, setLoader] = useState(false);
 
   const twoColors = {
     "0%": "#108ee9",
@@ -17,8 +19,16 @@ export default function Myprogress() {
     "100%": "#ffccc7",
   };
 
+  const myCompo = useMemo(() => {
+    console.log("---loading----", loader);
+    return <p>{loader === true ? "loaded" : "not loaded"}</p>;
+  }, [loader]);
+
+  useEffect(() => {
+    setLoader();
+  }, [data]);
   const Progresss = () => {
-    return data.map((item, index) => (
+    return data.map((item) => (
       <div>
         <Progress
           type={item.type}
@@ -57,8 +67,9 @@ export default function Myprogress() {
 
   return (
     <>
+      Hello world --- {myCompo}
       <Row gutter={[16, 16]}>
-        <Col xs={24} md={12} lg={12}>
+        <Col md={12} lg={12}>
           <Card title="Course Progress (Circle Type)">
             <Flex gap="large" wrap justify="center">
               {Progresss("circle")}
