@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
@@ -6,7 +6,7 @@ const useFetch = (url) => {
   const [postLoading, setPostLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleRequest = async (method = "GET", body = null) => {
+  const handleRequest = useCallback (async  (method = "GET", body = null) => {
     method === "POST" ? setPostLoading(true) : setLoading(true);
     setError(null);
 
@@ -18,23 +18,25 @@ const useFetch = (url) => {
       });
 
       if (!response.ok) throw new Error(`Error: ${response.status}`);
-      const result = await response.json();
-
-      setData(result);
+      const result = await response.json();   
+       if (method === "GET") {
+        setData(result);
+      }
+    
       return result;
     } catch (err) {
       setError(err.message);
 
-      console.log(err.message);
+     
       return null;
     } finally {
-      method === "POST" ? setPostLoading(false) : setLoading(false);
+       method === "POST" ? setPostLoading(false) : setLoading(false);
     }
-  };
-
+  
+  },[url])
   useEffect(() => {
     handleRequest();
-  }, []);
+  }, [handleRequest]);
 
   return {
     data,
@@ -44,6 +46,6 @@ const useFetch = (url) => {
     fetchData: () => handleRequest("GET"),
     postData: (body) => handleRequest("POST", body),
   };
-};
+}
 
 export default useFetch;
