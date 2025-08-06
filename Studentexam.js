@@ -1,15 +1,12 @@
 import React from "react";
-import { Row, Col } from "antd";
+import { Row, Col  ,Flex,Spin,Alert} from "antd";
 import { SPtable } from "./Components";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 
 export default function Studentexam() {
   const { data, loading, error } = useFetch("http://localhost:8080/course");
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-  if (!data || data.length === 0) return <p>No exam data available.</p>;
-
+if (!data || data.length === 0) return <p>No exam data available.</p>;
   const columns = [
     { title: "Course Title", dataIndex: "course_subject", key: "course_subject" },
     { title: "Exam Type", dataIndex: "exam_type", key: "exam_type" },
@@ -18,6 +15,13 @@ export default function Studentexam() {
 
   return (
     <Row style={{ padding: 10 }}>
+      {loading ? (
+        <Flex align="center" justify="center" style={{ padding: "50px" }}>
+          <Spin tip="Loading modules..." />
+        </Flex>
+      ) : error ? (
+        <Alert message="Error" description={error} type="error" showIcon />
+      ) : (
       <Col span={24}>
         <SPtable
           data={data}
@@ -29,6 +33,7 @@ export default function Studentexam() {
           rowClassName={() => "no-color-row"}
         />
       </Col>
+      )}
     </Row>
    
   );

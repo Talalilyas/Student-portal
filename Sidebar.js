@@ -9,8 +9,8 @@ import {
   LikeOutlined,
   StarOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Divider } from "antd";
-import {  useLocation } from "react-router-dom";
+import { Layout, Menu, Divider, Alert, Flex, Spin } from "antd";
+import { useLocation } from "react-router-dom";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 import SPHeader from "./Components/SPHeader";
 import SidebarMenuItem from "./Components/SidebarMenuItem";
@@ -23,7 +23,7 @@ const iconMap = {
   "Academic Calendar": <CalendarOutlined />,
   "Results Card": <ScheduleOutlined />,
   "Study Card": <UserOutlined />,
- "Recommendations": <LikeOutlined />,
+  Recommendations: <LikeOutlined />,
   "My Rating": <StarOutlined />,
   "Sign Out": <LogoutOutlined />,
 };
@@ -66,47 +66,56 @@ export default function Sidebar({ handleSignOut }) {
         loading={profileLoading}
       />
       <Divider style={{ margin: "16px 0" }} />
-      <Menu
-        mode="inline"
-        theme="light"
-        style={{ padding: "0 16px" }}
-        selectedKeys={[selectedKey]}>
-        {data
-          .filter((item) => mainItems.includes(item.label))
-          .map(({ id, label, path }) => (
-            <SidebarMenuItem
-              key={id}
-              label={label}
-              icon={iconMap[label] || <ReadOutlined />}
-              path={`/studentdashboard/${path}`}
-            />
-          ))}
+      {loading ? (
+        <Flex align="center" justify="center" style={{ padding: "50px" }}>
+          <Spin tip="Loading modules..." />
+        </Flex>
+      ) : error ? (
+        <Alert message="Error" description={error} type="error" showIcon />
+      ) : (
+        <Menu
+          mode="inline"
+          theme="light"
+          style={{ padding: "0 16px" }}
+          selectedKeys={[selectedKey]}
+        >
+          {data
+            .filter((item) => mainItems.includes(item.label))
+            .map(({ id, label, path }) => (
+              <SidebarMenuItem
+                key={id}
+                label={label}
+                icon={iconMap[label] || <ReadOutlined />}
+                path={`/studentdashboard/${path}`}
+              />
+            ))}
 
-        <Divider style={{ margin: "16px 0" }} />
-        {data
-          .filter((item) => extraItems.includes(item.label))
-          .map(({ id, label, path }) => (
-            <SidebarMenuItem
-              key={id}
-              label={label}
-              icon={iconMap[label] || <ReadOutlined />}
-              path={`/studentdashboard/${path}`}
-            />
-          ))}
+          <Divider style={{ margin: "16px 0" }} />
+          {data
+            .filter((item) => extraItems.includes(item.label))
+            .map(({ id, label, path }) => (
+              <SidebarMenuItem
+                key={id}
+                label={label}
+                icon={iconMap[label] || <ReadOutlined />}
+                path={`/studentdashboard/${path}`}
+              />
+            ))}
 
-        <Divider style={{ margin: "16px 0" }} />
+          <Divider style={{ margin: "16px 0" }} />
 
-        {data
-          .filter((item) => actionItems.includes(item.label))
-          .map(({ id, label }) => (
-            <SidebarMenuItem
-              key={id}
-              label={label}
-              icon={iconMap[label] || <ReadOutlined />}
-              onClick={handleSignOut}
-            />
-          ))}
-      </Menu>
+          {data
+            .filter((item) => actionItems.includes(item.label))
+            .map(({ id, label }) => (
+              <SidebarMenuItem
+                key={id}
+                label={label}
+                icon={iconMap[label] || <ReadOutlined />}
+                onClick={handleSignOut}
+              />
+            ))}
+        </Menu>
+      )}
     </Sider>
   );
 }

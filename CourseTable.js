@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Typography, Card } from "antd";
+import { Row, Col, Typography, Card, Flex, Spin, Alert } from "antd";
 import { SPtable } from "./Components";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 
@@ -13,8 +13,6 @@ export default function CourseTable({
 }) {
   const { data, loading, error } = useFetch(apiUrl);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
   if (!data || !Array.isArray(data) || data.length === 0)
     return <p>No data available.</p>;
 
@@ -32,23 +30,23 @@ export default function CourseTable({
 
   return (
     <Row style={{ padding: 10 }}>
-      <Col span={24}>
-        {useCard ? (
-          <Card
-            title={
-              title ? (
-                <Title level={5}>
-                  {title}
-                </Title>
-              ) : null
-            }
-          >
-            {tableContent}
-          </Card>
-        ) : (
-          tableContent
-        )}
-      </Col>
+      {loading ? (
+        <Flex align="center" justify="center" style={{ padding: "50px" }}>
+          <Spin tip="Loading modules..." />
+        </Flex>
+      ) : error ? (
+        <Alert message="Error" description={error} type="error" showIcon />
+      ) : (
+        <Col span={24}>
+          {useCard ? (
+            <Card title={title ? <Title level={5}>{title}</Title> : null}>
+              {tableContent}
+            </Card>
+          ) : (
+            tableContent
+          )}
+        </Col>
+      )}
     </Row>
   );
 }

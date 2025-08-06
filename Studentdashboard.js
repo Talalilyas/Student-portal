@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, Row, Col, theme } from "antd";
 import { useNavigate, Outlet } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
