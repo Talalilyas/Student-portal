@@ -1,5 +1,5 @@
 
-import { Button, Row, Col,  Typography } from "antd";
+import { Button, Row, Col, Typography } from "antd";
 import { GooglePlusOutlined } from "@ant-design/icons";
 import Lecturer from "./Lecturer";
 import SPimagebg from "./Components/SPimagebg";
@@ -24,7 +24,7 @@ export default function Login() {
           style={{ textAlign: "center", fontFamily: "cursive" }}
         >
           Sign in UoS
-        </Title>
+        </Title >
         <Lecturer />
         <Row justify="center">
           <Col>
@@ -35,8 +35,7 @@ export default function Login() {
                 <GooglePlusOutlined
                   style={{ fontSize: "30px", color: "#08c" }}
                 />
-              }
-            >
+              } >
               Continue with Google
             </Button>
           </Col>
