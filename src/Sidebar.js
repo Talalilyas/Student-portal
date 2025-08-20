@@ -53,6 +53,8 @@ export default function Sidebar({ handleSignOut }) {
     data.find((item) => item.path?.toLowerCase() === currentPath)?.id + "";
 
   return (
+
+    
     <Sider
       width={280}
       collapsed={collapsed}
@@ -71,7 +73,7 @@ export default function Sidebar({ handleSignOut }) {
           <Spin tip="Loading modules..." />
         </Flex>
       ) : error ? (
-        <Alert message="Error" description={error} type="error" showIcon />
+        <Alert message="Error" description={error} type="error" showIcon />         
       ) : (
         <Menu
           mode="inline"

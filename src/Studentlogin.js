@@ -45,7 +45,7 @@ const handleSubmit = async () => {
       <SPlogoheader />
       <SPTitle text="Student Performing Portal Login" />
       <Row justify="center">
-        <Col span={6}>
+        <Col lg={6}>
           <Card bodyStyle={{ backgroundColor: "#002766" }}>
             <Form
               name="loginForm"

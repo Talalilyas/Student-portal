@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Spin, Alert, Flex } from "antd";
 import useFetch from "./FetchHOOk/Hookfetchdata";
 import SPTitle from "./Components/SpTitle";
@@ -6,6 +6,14 @@ import SPButton from "./Components/SPButton";
 
 export default function Studycard() {
   const { loading, data, error } = useFetch("http://localhost:8080/Studycard");
+
+  const  [click ,setclick]  = useState()
+
+
+  function handleclick ( ) {
+   console.log( click,"user trying to explore")
+     
+  }
 
   return (
     <div>
@@ -41,7 +49,7 @@ export default function Studycard() {
                 }}
               >
                 <SPTitle item={item.label}>{item.label}</SPTitle>
-                <SPButton type={"primary"} Shape={"round"} name={"Explore"}>
+                <SPButton type={"primary"} Shape={"round"} name={"Explore"}  onclick= {handleclick}>
                   Explore
                 </SPButton>
               </div>
