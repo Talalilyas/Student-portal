@@ -48,7 +48,7 @@ export default function Studycard() {
                   justifyContent: "space-between",
                 }}
               >
-                <SPTitle item={item.label}>{item.label}</SPTitle>
+                <SPTitle item={item.label}>{item  .label}</SPTitle>
                 <SPButton type={"primary"} Shape={"round"} name={"Explore"}  onclick= {handleclick}>
                   Explore
                 </SPButton>

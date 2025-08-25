@@ -26,7 +26,7 @@ const useFetch = (url) => {
       return result;
     } catch (err) {
       setError(err.message);
-
+      
      
       return null;
     } finally {
